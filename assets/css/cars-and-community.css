@@ -27,6 +27,7 @@ body{
     font-display: swap;
     font-size: 1.6rem;
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
 }
 .introduction .wave{
@@ -56,11 +57,15 @@ body{
     min-height: 50vh;
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
     color: black;
     font-family: 'Nunito', sans-serif;
+    padding: 0 5rem;
 }
 .drivers .info {
     padding: 4rem;
+}
+.drivers .title h1{
 }
 .title{
     color: #433ea6;
@@ -88,29 +93,35 @@ body{
 }
 .fired {
     display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     width: 100%;
     min-height: 50vh;
+    padding: 0 5rem;
 }
 .fired .info{
     position: relative;
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
     height: 100%;
     font-family: 'Nunito', sans-serif;
 }
 .fired .info .title {
-    text-align: end;
+    text-align: start;
 }
 .fired .picture_factory{
-    width: 50%;
-    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
 .fired .picture_factory img{
     padding: 1rem;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    object-fit: contain;
+    object-position: center;
 }
 .fired .areas {
     color: white;
@@ -146,15 +157,15 @@ body{
     align-items: center;
     padding: 3rem;
     width: 100%;
-    min-height: 100vh;
+    min-height: 70vh;
 }
 .sales .sales-of-marks {
     display: flex;
     justify-content: space-around;
-    width: 95%;
+    width: 80%;
 }
 .sales .sales-of-marks .info-of-sales {
-    width: 40%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -209,7 +220,7 @@ body{
     justify-content: center;
 }
 .like-dislike .info-about-graphic .img-about-quiz .people_likes{
-    width: 80%;
+    width: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,18 +244,47 @@ body{
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-image: conic-gradient(#433ea6 0% 5%, #645cf8 5% 100%);
+    background-image: conic-gradient(#e74c3c 0 30%, #3498db 30% 86%, #f1c40f 86% 92%, #9b59b6 92% 97%, #2ecc71 97% 100%);
+    /* background-image: conic-gradient(#433ea6 0% 5%, #645cf8 5% 100%); */
     animation-name: graphic-turns;
     animation-iteration-count: infinite;
     animation-duration: 5s;
+}
+
+.info-about-quiz .info .div-grid .circle {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #e74c3c;
+}
+.info-about-quiz .info .div-grid:nth-child(2) .circle {
+    background-color: #3498db;
+}
+.info-about-quiz .info .div-grid:nth-child(3) .circle {
+    background-color: #f1c40f;
+}
+.info-about-quiz .info .div-grid:nth-child(4) .circle {
+    background-color: #9b59b6;
+}
+.info-about-quiz .info .div-grid:nth-child(5) .circle {
+    background-color: #2ecc71;
 }
 .info-about-quiz .title {
     color: black;
 }
 .info-about-quiz .info {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0 5rem;
+}
+.info-about-quiz .div-grid {
+    font-family: 'Nunito';
+
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    font-size: 1.6rem;
     color: black;
 }
 .info-about-quiz .info div {
@@ -252,14 +292,14 @@ body{
     display: flex;
     align-items: center;
 }
-.info-about-quiz .info div .circle{
+.info-about-quiz .info .div-grid .circle{
     width: 2rem;
     height: 2rem;
     border-radius: 50%; 
-    background-color: #645cf8;
+    /* background-color: #c0392b; */
 }
-.info-about-quiz .info div:nth-of-type(2) .circle{
-    background-color: #433ea6;
+.info-about-quiz .info .div-grid:nth-of-type(2) .circle{
+    /* background-color: #433ea6; */
 }
 @keyframes graphic-turns {
     0% {
@@ -300,4 +340,24 @@ body{
     width: 100%;
     object-fit: contain;
     object-position: center;
+}
+.separator-title {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Urbanist', 'Nunito', sans-serif;
+    font-size: 4rem;
+    color: #433ea6;
+    font-weight: bold;
+}
+.easy .driver_picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.easy .driver_picture img {
+    width: 80%;
 }

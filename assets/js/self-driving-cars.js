@@ -2,55 +2,62 @@ let countImage = 1;
 let limitImage = 6;
 
 let arrayForInfo = [
-    `<h1>La mecatrónica</h1>
-    <span>transformó completamente la forma en que se crean los autos y, al mismo tiempo se transforma la experiencia del usuario para conducir al ser una actividad tan usual.</span>
+    `<h1>¿Cómo se llevaría a cabo nuestra solución?</h1>
+    <br>
+    <span>La manera en la que vamos a solucionar las problemáticas es mediante programas informáticos. Sin embargo, aunque se podría pensar que solamente diseñaremos un modelo y copiaremos y pegaremos este en todos los casos; esto no será así. Cada programa informático tiene que ser diferente, en mayor o menor medida. De esta manera es que llegamos a una metodología de fases la cual nos servirá para cumplir con nuestro propósito.</span>
     `,
-    `<h1>¿Cómo se puede ver afectada esta actividad cotidiana con este tipo de autos inteligentes?</h1>
-    <span>Vamos a verlo con unos ejemplos...</span>
-    `,
-    `<h1>Beneficios</h1><span>&nbsp;de los self-driving cars:</span>
+    `<h1>1.- Observar y analizar el caso en estudio</h1>
+    <br>
+    <span>Debido a que todos los usuarios son diferentes, es necesario preguntar sobre para qué será utilizado dicho programa.</span>
+    <br>
     <ul>
-        <li>Optimizan nuestro día a día</li>
-        <li>Buscan la mejor ruta de manera inteligente</li>
-        <li>Utilizan el mapa de la ciudad de una manera óptima</li>
-        <li>Poseen funciones de búsqueda de estacionamiento</li>
-        <li>Manejas a través de la app vinculada</li>
+        <li>¿Quién usará este programa?</li>
+        <li>¿Para qué se usará dicho programa?</li>
+        <li>¿Cuáles son los problemas que tienes actualmente, y esperas que sean resueltos con este programa?</li>
+        <li>¿Te gustaría algún diseño o paleta de colores?</li>
+        <li>¿Cuáles son las especificaciones de las computadoras que usarán este programa?</li>
+        <li>Hacer dibujos o diagramas de cómo serían las interfaces y funcionamiento del programa</li>
+    </ul>
+    <br>
+    <span>Con las respuestas obtenidas tenemos mucha información sobre qué es lo que quiere el usuario.</span>
+    `,
+    `<h1>2.- Elaborar bocetos de prueba y presentarlos.</h1>
+    <br>
+    <span>Las tecnologías que en su mayoría utilizaremos para la elaboración de los programas serán:</span>
+    <br>
+    <ul>
+        <li>Lenguajes de programación: Java, C#, C++, Swift, JavaScript</li>
+        <li>IDE's: Visual Studio</li>
+        <li>Servidores: HTTP, HTTPS, FTP, Bases de datos, etc.</li>
+        <li>Otras tecnologías: Electron, FCM Notifications, Redux, Reac-Native, etc.</li>
     </ul>
     `,
-    `<h1>Contras</h1><span>&nbsp;de los self-driving cars:</span>
+    `<span>Una vez elaborado el boceto de prueba no podemos simplemente entregarlo como producto final. En todo desarrollo siempre hay varias versiones de prueba. Siempre despues de un boceto hay que presentarlo al cliente, y preguntar lo siguiente:</span>
+    <br>
     <ul>
-        <li>Precios elevados</li>
-        <li>Infraestructura de la ciudad no siempre apta para utilizarlos</li>
-        <li>Baja seguridad del software del auto</li>
-        <li>Accidentes ocurridos con la funcion "self-driving"</li>
+        <li>¿Qué es lo que esperabas, y este programa no tiene?</li>
+        <li>¿Qué es lo que te hubiera gustado que tuviese este programa?</li>
+        <li>¿El diseño te agrada o disgusta?</li>
+        <li>¿Qué otras ideas se te han ocurrido en este tiempo?</li>
+        <li>Hacer otros dibujos o diagramas de cómo serían las nuevas interfaces o funcionamientos del programa, y preguntar si las adiciones, eliminaciones o actualizaciones ilustradas son adecuadas.</li>
+    </ul>
+    <br>
+    <span>Una vez obtenida la nueva información, hay que elaborar otro u otros bocetos que cada vez más se acerquen a la versión final del producto. Cada vez que obtengamos un boceto relativamente decente, hay que presentarlo y repetir las preguntas anteriormente mencionadas.</span>
+    `,
+    `
+    <h1>3.- Preparar todo para versión de producción y notificar sobre información de contacto</h1>
+    <br>
+    <span>Cuando hayamos llegado a un boceto de prueba el cual no extraiga nada de información nueva otorgada por las preguntas ofrecidas en la fase 2, aún no es tiempo de entregarlo. Es necesario realizar los siguientes puntos:</span>
+    <br>
+    <ul>
+        <li>Cambiar variables necesarias para producción</li>
+        <li>Verificar que se hayan seguido buenas prácticas de desarrollo</li>
+        <li>Crear la versión de producto final que estará en los dispositivos de los usuarios</li>
+        <li>Comprobar si funciona con propios celulares o computadores (emulados o físicos)</li>
     </ul>
     `,
     `
-    <h1>Precios elevados de los modelos de Tesla:</h1>
-    <ul>
-        <li>Tesla Model S: $3,194,100.00 MXN</li>
-        <li>Tesla Model X: $2,551,300.00 MXN</li>
-        <li>Tesla Model 3: $1,303,900.00 MXN</li>
-        <li>Tesla Model Y: $1,483,100.00 MXN</li>
-    </ul>
-    <br/>
-    <span>Definitivamente no son accesibles para todo el público</span>
-    `,
-    `
-    <h1>Pero... ¿qué tan seguros son estos autos?</h1>
-    <br/>
-    <div class="separator">
-        <span>1.- Sensores avanzados: pueden contar con hasta 12 sensores avanzados</span>
-    </div>
-    <div class="separator">
-        <span>2.- Cámaras de vídeo: hasta 8 cámaras periféricas con 360° de visibilidad</span>
-    </div>
-    <div class="separator">
-        <span>3.- Redes neuronales: ejecutan y procesan todas las funciones para la computadora principal</span>
-    </div>
-    <div class="separator">
-        <span>4.- Constantes actualizaciones de software</span>
-    </div>
+    <span>Al momento de hacer entrega se informaría sobre cómo usarlo mediante una exposición y/o un manual de usuario. Y, por último, como un programador no siempre puede preveer todos los puntos de falla, es importante informar sobre nuestra información de contacto en caso de errores encontrados. Una parte del servicio es que siempre, o en el tiempo posible, hay que estar dispuestos a resolver dudas y fallas detectadas en el software ofrecido.</span>
     `
 ]
 

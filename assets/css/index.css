@@ -223,8 +223,8 @@ body{
     flex-direction: row;
     /* background: linear-gradient(180deg, rgb(9,74,136) 90%, white 100%); */
     /* background: rgb(9,74,136); */
-    /* background-color: black; */
-    background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%);
+    background-color: black;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
     color: white;
     font-family: 'Poppins', sans-serif;
     padding: 3rem;
@@ -372,4 +372,83 @@ body{
     backdrop-filter: blur(.5rem);
     border-radius: 10%;
     margin: 1rem;
+}
+.photos {
+    display: grid;
+    grid-template-areas: "div1 div1 div1 div2"
+                        "div3 div4 div4 div4"
+                        "div5 div5 div6 div6"
+                        "div5 div5 div7 div7";
+    width: 50%;
+    height: calc(100vh - (2 * 3rem));
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: auto auto auto auto;
+
+    padding: 3rem;
+    gap: 1rem;
+}
+.photos div{
+    animation-name: animate-photo;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes animate-photo {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.photos div:nth-child(1) {
+    grid-area: div1;
+    background: url("./../img/gallery/img1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.photos div:nth-child(2) {
+    grid-area: div2;
+    background: url("./../img/gallery/img2.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.photos div:nth-child(3) {
+    grid-area: div3;
+    background: url("./../img/gallery/img3.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.photos div:nth-child(4) {
+    grid-area: div4;
+    background: url("./../img/gallery/img4.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.photos div:nth-child(5) {
+    grid-area: div5;
+    background: url("./../img/gallery/img5.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.photos div:nth-child(6) {
+    grid-area: div6;
+    background: url("./../img/gallery/img6.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.photos div:nth-child(7) {
+    grid-area: div7;
+    background: url("./../img/gallery/img7.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
