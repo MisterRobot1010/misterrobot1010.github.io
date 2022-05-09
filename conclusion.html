@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conclusiones</title>
+
+    <link rel="stylesheet" href="./assets/css/conclusion.css">
+
+    <link rel="stylesheet" href="assets/style_header.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+
+    <script src="assets/js/jquery-3.2.1.js"></script>
+    <script src="assets/js/events.js"></script>
+    <script>
+        function Descarga(url,name){
+        
+        let a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+        a.download = name;
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+    </script>
+    <style>
+    .button_download{
+        padding: 16px;
+        background-color: white;
+        color:black;
+        font-weight: bold;
+        text-transform: capitalize;
+        border: 2px solid black;
+        cursor:pointer;
+        transition: .6s;
+        font-size: 15px;
+        transform-origin: top;
+        transform: skewX(-45deg);
+    }
+    .powerpoint:hover{
+        border:2px solid #fa8231;
+        background-color: #fa8231;
+        color:white;
+        content: "Powerpoint";
+    }
+    .pdf:hover{
+        border:2px solid #e74c3c;
+        background-color: #e74c3c;
+        color:white;
+        content: "Pdf";
+    }
+
+    .excel:hover{
+        border:2px solid #26de81;
+        background-color: #26de81;
+        color:white;
+        content: "Excel";
+    }
+
+
+    </style>
+
+</head>
+<body>
+    <header class="header">
+
+        <div class="container_name">
+            <p class="container_name_text"></p>
+        </div>
+
+        <ul class="container_menu" id="menu_options">
+            <li class="menu_item"><a href="./index.html">Mecatrónica</a></li>
+            <li class="menu_item"><a href="./where-is-the-mechatronic.html">Áreas que apoya la Mecatrónica</a></li>
+            <li id="contact_li" class="menu_item"><a href="./self-driving-cars.html">Self-Driving Cars</a></li>
+            <li class="menu_item"><a href="./cars-and-community.html">Los Self-Driving Cars y la Comunidad</a></li>
+            <li class="menu_item"><a href="#">Conclusiones</a></li>
+        </ul>
+
+        <label id="bars" onclick="document.getElementById('menu_options').toggleClass('hide')">
+            <i class="fa fa-bars"></i>
+        </label>
+    </header>
+    <div class="container">
+        <h2>Entonces, ¿cuáles son nuestras conclusiones?</h2>
+        <div class="skew">
+            <p>Una vez vista toda la información necesaria para entender el tema, pasemos al veredicto final.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="imgBx">
+            <img src="./assets/img/conclusion/img1.jpg" alt="">
+            <img src="./assets/img/conclusion/img1.jpg" alt="">
+            <img src="./assets/img/conclusion/img1.jpg" alt="">
+        </div>
+        <h2>¿Donde está la mecatrónica en la vida cotidiana?</h2>
+        <div class="skew">
+            <p>En todos lados, en realidad. En alimentos, transporte, maquinaria, etc. Gracias a la mecatrónica es que podemos avanzar como sociedad inteligente, ya que con esta es posible adaptar las cosas o crear otras mucho mejores que las actuales, y así seguir mejorando como civilización.</p>
+            <!-- <a href="#">Read More</a> -->
+        </div>
+    </div>
+    <div class="container">
+        <div class="imgBx">
+            <img src="./assets/img/conclusion/img2.jpg" alt="">
+            <img src="./assets/img/conclusion/img2.jpg" alt="">
+            <img src="./assets/img/conclusion/img2.jpg" alt="">
+        </div>
+        <h2>¿Y cuál es el problema con esto?</h2>
+        <div class="skew">
+            <p>La problemática es que puede haber falta de empleo para cierto sector de la población, ya que ahora es posible sustituir la labor humana, diseñando máquinas para trabajar más eficientemente.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="imgBx">
+            <img src="./assets/img/conclusion/img3.jpg" alt="">
+            <img src="./assets/img/conclusion/img3.jpg" alt="">
+            <img src="./assets/img/conclusion/img3.jpg" alt="">
+        </div>
+        <h2>¿Cómo podrían sustituirnos este tipo de máquinas?</h2>
+        <div class="skew">
+            <p>Haciendo cálculos más rápidos y precisos, cometiendo menos errores y optimizando tiempos. Por lo tanto, inevitablemente esto desencadenará en recorte de personal y falta de empleo, pero generará más trabajo para profesionistas en distintas ingenierías.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="imgBx">
+            <img src="./assets/img/conclusion/img4.jpg" alt="">
+            <img src="./assets/img/conclusion/img4.jpg" alt="">
+            <img src="./assets/img/conclusion/img4.jpg" alt="">
+        </div>
+        <h2>Volviendo a los self-driving cars, ¿realmente este tipo de autos nos ayudarán?</h2>
+        <div class="skew">
+            <p>Estos autos incorporan una tecnología capaz de tomar decisiones que modifican la conducción de estos. Sin embargo, hay variables que aún no son del todo capaces de diferenciar, en comparación de un humano que si puede hacerlo. Por lo tanto, los conductores tienen que estar atentos en todo momento si es que no quieren pertenecer al gran número de accidentes registrados con este tipo de automóviles. Además, su alto costo y posibles hackeos lo pintan como una compra no tan accesible y poco segura. Por otro lado, la ventaja principal es su nulo consumo de gasolina.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="imgBx">
+            <img src="./assets/img/conclusion/img5.jpg" alt="">
+            <img src="./assets/img/conclusion/img5.jpg" alt="">
+            <img src="./assets/img/conclusion/img5.jpg" alt="">
+        </div>
+        <h2>¿Cuál es el futuro de los self-driving cars?</h2>
+        <div class="skew">
+            <p>En la actualidad este tipo de autos no son seguros de utilizar con la funcion "Auto Pilot", ya que el porcentaje de accidentes aún es significativo. Sin embargo, nuestro equipo no tiene duda que este es el futuro. Con el paso del tiempo se desarrollarán más tecnologías que mejorarán la seguridad, inteligencia y costos de estos vehículos, mejorando así nuestra vida cotidiana.</p>
+        </div>
+    </div>
+    <div class="container">
+        <h2>¿Quieres saber más acerca de la información aquí presentada?</h2>
+        <div class="skew">
+            <p>Descarga los siguientes archivos donde nos extendemos mucho más sobre lo visto aquí.</p>
+            
+    <button class="button_download powerpoint" onclick='Descarga("./assets/files/pp.pptx","powerpointDescargado.pptx")'>powerpoint <i class="fa fa-file-powerpoint-o"></i></button>
+    <button class="button_download pdf" onclick='Descarga("./assets/files/pdf.pdf","pdfDescargado.pdf")'>pdf <i class="fa fa-file-pdf-o"></i></button>
+    <button class="button_download excel" onclick='Descarga("./assets/files/excel.xlsx","excelDescargado.xlsx")'>excel <i class="fa fa-file-excel-o"></i></button>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</body>
+</html>

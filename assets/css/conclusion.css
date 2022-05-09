@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
+    scroll-behavior: smooth;
+    font-family: 'Nunito', sans-serif;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(15, 17, 27);
+    flex-direction: column;
+}
+.container {
+    position: relative;
+    margin-top: 25rem;
+    max-width: 70rem;
+    transform: skewY(-20deg);  
+    font-family: 'Poppins', sans-serif;
+}
+.container .imgBx {
+    position: relative;
+    width: 100%;
+    height: 18rem;
+    transform-origin: bottom;
+    transform: skewX(45deg);
+}
+.container .imgBx img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: .1;
+    transition: .5s;
+}
+.container .imgBx:hover img:nth-child(3) {
+    transform: translate(4rem, -4rem);
+    opacity: 1;
+}
+.container .imgBx:hover img:nth-child(2) {
+    transform: translate(2rem, -2rem);
+    opacity: .5;
+}
+.container .imgBx:hover img:nth-child(1) {
+    /* transform: translate(1rem, -1rem); */
+}
+.container h2 {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    color: white;
+    font-size: 4rem;
+}
+.container .skew {
+    transform-origin: top;
+    transform: skewX(45deg);
+    color: white;
+    font-size: 1.6rem;
+}
+.container .skew a {
+    position: relative;
+    color: white;
+    display: inline-block;
+    transform-origin: top;
+    transform: skewX(-45deg);
+    padding: 1rem;
+    margin-top: 2rem;
+    border: .2rem solid white;
+}
+.container .skew a:hover {
+    color: rgb(15, 17, 27);
+    background-color: white;
+}

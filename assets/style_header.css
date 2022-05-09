@@ -1,0 +1,264 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    transition: all 1s;
+}
+
+
+.header{
+    width:100%;
+    display: flex;
+    height: 100px;
+    /* background-color: rgba(54,0,25,1); */
+    background-color: transparent;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.header #bars{
+    background-color: white;
+    cursor:pointer;
+    color:black;
+    font-size: 30px;
+    display: block;
+    padding: 10px;
+    margin: 10px;
+    z-index: 10;
+}
+.header #bars{
+    display: block;
+}
+.header .container_menu.hide{
+    display: none;
+}
+.header .container_menu{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(1, 1, 1, 0.9);
+    top:50px;
+    left:-100%;
+    transition:all .5s;
+    z-index: 2;
+    flex-direction: column;
+    justify-content: center;
+}
+.header .container_menu .menu_item{
+    display: block;
+    margin: 15px;
+    font-size: 20px;
+}
+.header .container_menu .menu_item:hover{
+    
+    border-bottom: 1px solid white;
+    
+}
+.header .container_menu.show{
+    left:0;
+    top:0;
+}
+
+
+
+.container_name{
+    padding: 10px;
+    
+}
+
+.container_name_text{
+    color: white;
+    letter-spacing: 1px;
+    font-family: 'Nunito';
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.container_menu{
+    list-style: none;
+    background-color: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+.container_menu .menu_item{
+    padding: 5px;
+    margin: 5px;
+    color:white;
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;    
+    
+}
+.container_menu .menu_item a {
+    text-decoration: none;
+    color: white;
+}
+
+.container_menu .menu_item:hover{
+    border-bottom: 1px solid white;
+    
+}
+/*******************contact*************************/
+
+.contact_container{
+    position:fixed;
+    top: 50px;
+    right: -100%;
+    width: 100%;
+    height: 70vh;
+    background-color: rgba(1, 1, 1, 0.9);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.contact_container #close_contact{
+    color:white;
+    font-size: 25px;
+    align-self: flex-end;
+    margin-right: 50px;
+    font-weight: bold;
+}
+
+.show_contact{
+    right: 0;
+}
+.contact_container label{
+    
+    margin: 15px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color:white;
+    
+}
+
+
+.contact_container input{
+    color: white;
+    margin: 15px;
+    padding: 10px 40px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    border: 0;
+    outline: none;
+    background-color: rgba(1, 1, 1, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+.contact_container input::placeholder{
+    text-align: center;
+}
+
+
+.contact_container input:focus{
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 4px 5px rgba(255, 255, 255, 0.4);
+    transition: .7s all;
+}
+.contact_container button{
+    outline: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color:white;
+    border:1px solid white;
+    margin: 15px;
+    margin-top: 20px;
+    background-color: rgba(1, 1, 1, 0.1);
+}
+.contact_container button:hover{
+    transition: all .9s;
+    background-color: white;
+    color:black;
+}
+
+
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.content-select select::-ms-expand {
+    display: none;
+}
+
+.content-select{
+	width: 300px;
+	position: relative;
+}
+ 
+.content-select select{
+	display: inline-block;
+	width: 100%;
+	cursor: pointer;
+  	padding: 7px 10px;
+  	height: 42px;
+  	outline: 0; 
+  	border: 0;
+	border-radius: 0;
+	background: #fff;
+	color: #111;
+    font-weight: bold;
+	font-size: 1em;
+    text-align: center;
+	font-family:'Quicksand', sans-serif;
+	border:1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.content-select select option{
+    background-color: white;
+    font-weight: bold;
+}
+
+.content-select select:hover{
+	background: #31f093;
+    color:black;
+}
+ 
+/* 
+Creamos la fecha que aparece a la izquierda del select.
+Realmente este elemento es un cuadrado que sólo tienen
+dos bordes con color y que giramos con transform: rotate(-45deg);
+*/
+.content-select i{
+	position: absolute;
+	right: 20px;
+	top: calc(50% - 13px);
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-left:4px solid #2AC176;
+	border-bottom:4px solid #2AC176;
+	transform: rotate(-45deg); /* Giramos el cuadrado */
+	transition: all 0.25s ease;
+}
+ 
+.content-select:hover i{
+	margin-top: 3px;
+}
+#hack_email{
+    opacity: 0;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}

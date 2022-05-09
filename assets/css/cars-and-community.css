@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+}
+main {
+    display: flex;
+    flex-direction: column;
+}
+body{
+    font-size: 1.6rem;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
+}
+/*#6C63FF*/
+.introduction {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to top, #433ea6 0%, #645cf8 100%);
+    overflow: hidden;
+    color: white;
+    font-family: 'Urbanist', sans-serif;
+    font-display: swap;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+}
+.introduction .wave{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+.wave {
+    width: 100%;
+}
+.introduction .info {
+    width: 50%;
+    text-align: center;
+}
+.introduction .people_picture {
+    position: relative;
+    width: 50%;
+    height: 50%;
+}
+.introduction .people_picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.drivers {
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+}
+.drivers .info {
+    padding: 4rem;
+}
+.title{
+    color: #433ea6;
+    font-family: 'Urbanist', sans-serif;
+    font-display: swap;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.drivers .driver_picture {
+    padding: 1rem;
+    width: 50%;
+    height: 100%;
+}
+.drivers .driver_picture img {
+    width: 100%;
+    height: 100%;
+}
+.drivers .item-list {
+    text-align: center;
+    margin: 1rem 0;
+    color: white;
+    background-color: #433ea6;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.fired {
+    display: flex;
+    width: 100%;
+    min-height: 50vh;
+}
+.fired .info{
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+}
+.fired .info .title {
+    text-align: end;
+}
+.fired .picture_factory{
+    width: 50%;
+    height: 100%;
+}
+.fired .picture_factory img{
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+}
+.fired .areas {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    display: grid;
+    gap: 10px 10px;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    min-height: 40%;
+    background-color: transparent;
+}
+.fired .area{
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+.fired .area:nth-of-type(1) {
+    background-color: #27ae60;
+}
+.fired .area:nth-of-type(2) {
+    background-color: #2980b9;
+}
+.fired .area:nth-of-type(3) {
+    background-color: #8e44ad;
+}
+.fired .area:nth-of-type(4) {
+    background-color: #c0392b;
+}
+.sales {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+    width: 100%;
+    min-height: 100vh;
+}
+.sales .sales-of-marks {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+}
+.sales .sales-of-marks .info-of-sales {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.sales .sales-of-marks .info-of-sales .img-of-sales{
+    display: flex;
+}
+.sales-of-marks .info {
+    display: flex;
+    justify-content: space-evenly;
+}
+.sales-of-marks .info-of-sales .img-of-logo{
+    width: 15%;
+    
+}
+.sales-of-marks .info-of-sales .info .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    font-family: 'Nunito';
+    font-size: 1.8rem;
+}
+.sales .sales-of-marks .info-of-sales img {
+    width: 100%;
+    object-fit: contain;
+}
+.like-dislike {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 85vh;
+    padding: 3rem;
+    background-color: #645cf8;
+}
+.like-dislike .title {
+    color: white;
+    font-family: 'Urbanist', sans-serif;
+}
+.like-dislike .info {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+.like-dislike .info-about-graphic{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.like-dislike .info-about-graphic .img-about-quiz {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+.like-dislike .info-about-graphic .img-about-quiz .people_likes{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.like-dislike .info-about-graphic .img-about-quiz .people_likes img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.like-dislike .info-about-graphic .info-about-quiz {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    width: 50%;
+    background-color: white;
+    border-radius: 3rem;
+}
+.info-about-quiz .graphic{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(#433ea6 0% 5%, #645cf8 5% 100%);
+    animation-name: graphic-turns;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+}
+.info-about-quiz .title {
+    color: black;
+}
+.info-about-quiz .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+.info-about-quiz .info div {
+    margin: .5rem;
+    display: flex;
+    align-items: center;
+}
+.info-about-quiz .info div .circle{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%; 
+    background-color: #645cf8;
+}
+.info-about-quiz .info div:nth-of-type(2) .circle{
+    background-color: #433ea6;
+}
+@keyframes graphic-turns {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.accidents {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    width: 100%;
+    min-height: 80vh;
+}
+.accidents .info {
+    color: black;
+    font-family: 'Nunito', sans-serif;
+}
+.accidents .info-of-table{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.accidents .info-of-table div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.accidents .info-of-table div img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+}

@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
+    scroll-behavior: smooth;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
+    
+}
+
+.coverpage {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* background: url("./../img/mechatronic.jpg"); */
+    /* background-size: cover;
+    background-position: center; */
+    display: flex;
+    flex-direction: row;
+    /* place-items: center; */
+}
+.coverpage_photo {
+    height: 100%;
+    width: 35%;
+    background-color: red;
+    background: url("./../img/mechatronic.jpg");
+    background-position: center;
+    background-size: cover;
+}
+.coverpage_info {
+    height: 100%;
+    width: 65%;
+    background-color: rgb(237, 236, 236);
+    font-family: 'Nunito';
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    padding-left: 2rem;
+}
+.videoplayer {
+    height: 50%;
+    background-color: black;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+.coverpage_info .title span {
+    color: black;
+    font-size: 1.6rem;
+}
+.coverpage_info .title span:nth-child(1){
+    color: rgb(122, 54, 193);
+    font-weight: bold;
+    font-size: 4rem;
+}
+.coverpage_info .title span:nth-child(2){
+    color: black;
+    font-weight: bold;
+    font-size: 3rem;
+}
+.coverpage_info .title span:nth-child(3){
+    color: black;
+    font-weight: bold;
+    font-size: 3rem;
+}
+.coverpage_info .title span:nth-child(4){
+    color: rgb(0, 103, 179);
+    font-weight: bold;
+    font-size: 3rem;
+}
+.mechatronic-meaning {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(9,74,136,1) 90%); */
+    background-color: black;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    padding: 3rem;
+}
+.mechatronic-meaning .info, .mechatronic-meaning .animation {
+    width: 50%;
+    height: calc(100vh - (2 * 3rem));
+}
+.mechatronic-meaning .info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.mechatronic-meaning .animation {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mechatronic-meaning .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+}
+.mechatronic-meaning .info-and-animation {
+    
+}
+.mechatronic-meaning .subtitle {
+    font-family: 'Nunito';
+    font-size: 1.6rem;
+}
+.mechatronic-meaning .animation .container {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    z-index: 1;
+    position: absolute;
+    flex-direction: column;
+
+    animation-name: animation-hide;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes animation-hide {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+    /* 60% {
+        transform:scale(0);
+    }
+    100% {
+        transform: scale(1);
+    } */
+}
+@keyframes animation-show {
+    0% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.mechatronic-meaning .animation #mecatronica {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: #8e44ad;
+    border: .3rem solid #9b59b6;
+    border-radius: 3rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    animation-name: animation-show;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+.mechatronic-meaning .animation .first-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+}
+.mechatronic-meaning .animation .area {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.mechatronic-meaning .animation #electronica {
+    background-color: #2980b9;
+    border: .3rem solid #3498db;
+    border-top-left-radius: 3rem;
+}
+.mechatronic-meaning .animation #mecanica {
+    background-color: #27ae60;
+    border: .3rem solid #2ecc71;
+    border-top-right-radius: 3rem;
+}
+.mechatronic-meaning .animation #informatica {
+    background-color: #c0392b;
+    border: .3rem solid #e74c3c;
+    border-bottom-left-radius: 3rem;
+}
+.mechatronic-meaning .animation #control {
+    background-color: #f39c12;
+    border: .3rem solid #f1c40f;
+    border-bottom-right-radius: 3rem;
+}
+.steps {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* background: linear-gradient(180deg, rgb(9,74,136) 90%, white 100%); */
+    /* background: rgb(9,74,136); */
+    /* background-color: black; */
+    background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    padding: 3rem;
+}
+
+/*steps of mecha*/
+.steps .title {
+    position: absolute;
+    top: calc(3rem);
+}
+.steps .card {
+    position: relative;
+    width: calc(100vw * .2);
+    height: calc(100vh * .5);
+    /* width: 500px;
+    height: 200px; */
+    margin: 2rem;
+    cursor: pointer;
+}
+.steps .card .face {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: .5s;
+}
+.steps .card .front {
+    transform: perspective(60rem) rotateY(0deg);
+    box-shadow: 0 .5rem 1rem black;
+}
+.steps .card .front img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.steps .card .front h3 {
+    position: absolute;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    bottom: 0;
+    background-color: rgba(0,0,0,.3);
+    text-align: center;
+}
+.steps .card .back {
+    transform: perspective(60rem) rotateY(-180deg);
+    background: rgb(15, 17, 27);
+    box-shadow: 0 .5rem 1rem black;
+    padding: 1.6rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+}
+.steps .card .link {
+    border-top: .1rem solid white;
+}
+.steps .card .link a {
+    color: #f3f3f3;
+}
+
+.card:hover .front{
+    transform: perspective(60rem) rotateY(-180deg);
+}
+.card:hover .back{
+    transform: perspective(60rem) rotateY(-360deg);
+}
+
+.japan {
+    width: 100%;
+    height: 100vh;
+    background: url("./../img/background-japan.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.japan .background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.japan .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    height: 90%;
+    background: url("./../img/background-japan.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* .japan {
+    background: url("./../img/japan.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+.japan .title {
+    display: flex;
+    font-family: 'Poppins';
+    color: white;
+    padding: 1rem;
+    background-color: rgba(0,0,0,.3);
+    backdrop-filter: blur(.5rem);
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+.japan .cards {
+    display: flex;
+    position: absolute;
+    justify-content: space-evenly;
+    align-items: center;
+    bottom: 0;
+    width: 100%;
+    height: 80%;
+}
+.japan .card {
+    display: flex;
+    padding: 3rem;
+    text-align: center;
+    font-family: 'Nunito';
+    color: white;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70%;
+    width: 30%;
+    background-color: rgba(0,0,0,.3);
+    backdrop-filter: blur(.5rem);
+    border-radius: 10%;
+    margin: 1rem;
+}

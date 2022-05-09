@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Áreas que apoya la Mecatrónica</title>
+    
+    <link rel="stylesheet" href="./assets/css/where-is-the-mechatronic.css">
+
+    <link rel="stylesheet" href="./assets/fonts/Nunito/stylesheet.css">
+
+    <link rel="stylesheet" href="assets/style_header.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+
+    <script src="assets/js/jquery-3.2.1.js"></script>
+    <script src="assets/js/events.js"></script>
+</head>
+<body>
+    <header class="header">
+
+        <div class="container_name">
+            <p class="container_name_text"></p>
+        </div>
+
+        <ul class="container_menu" id="menu_options">
+            <li class="menu_item"><a href="./index.html">Mecatrónica</a></li>
+            <li class="menu_item"><a href="#">Áreas que apoya la Mecatrónica</a></li>
+            <li id="contact_li" class="menu_item"><a href="./self-driving-cars.html">Self-Driving Cars</a></li>
+            <li class="menu_item"><a href="./cars-and-community.html">Los Self-Driving Cars y la Comunidad</a></li>
+            <li class="menu_item"><a href="./conclusion.html">Conclusiones</a></li>
+        </ul>
+
+        <label id="bars" onclick="document.getElementById('menu_options').toggleClass('hide')">
+            <i class="fa fa-bars"></i>
+        </label>
+    </header>
+    <div class="container">
+        <div class="box box1">
+            <video src="./assets/videos/mining.mp4" autoplay muted loop></video>
+            <div class="content">
+                <h2>Industría de la minería</h2>
+                <br>
+                <span>Es representada por la explotación o extracción de los minerales que se han acumulado en el suelo y subsuelo en forma de yacimientos</span>
+            </div>
+        </div>
+        <div class="box box2">
+            <video src="./assets/videos/medicine.mp4" autoplay muted loop></video>
+            <div class="content">
+                <h2>Industría de la medicina</h2>
+                <br>
+                <span>Rama de la industria que se dedica al descubrimiento, desarrollo, fabricación y comercialización de medicamentos para la salud</span>
+            </div>
+        </div>
+        <div class="box box3">
+            <video src="./assets/videos/textile.mp4" autoplay muted loop></video>
+            <div class="content">
+                <h2>Industria textil</h2>
+                <br>
+                <span>Sector de la industria dedicado a la producción de fibras (naturales y sintéticas), hilados, telas y productos relacionados con la confección de ropa</span>
+            </div>
+        </div>
+
+        <div class="controls show">
+            <div class="prev">
+                <img src="./assets/img/prev.png" alt="" srcset="">
+            </div>
+            <div class="title">
+                <span>Áreas en las que la mecatrónica juega un papel importante</span>
+            </div>
+            <div class="next">
+                <img src="./assets/img/next.png" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/where-is-the-mechatronic.js"></script>
+</body>
+</html>

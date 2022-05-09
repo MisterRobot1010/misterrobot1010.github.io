@@ -1,0 +1,338 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito';
+}
+html {
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
+    
+}
+
+.viewer {
+    width: 100%;
+    height: 100vh;
+    background: url("./../img/self-driving-cars/img1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+}
+.container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1rem);
+    width: 50%;
+    height: 100%;
+    color: white;
+    align-items: center;
+}
+.info {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    padding: 0 3rem;
+}
+.switcher {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    align-items: flex-end;
+    right: 1rem;
+    bottom: 1rem;
+    width: 40%;
+    height: 10%;
+}
+.switcher .content {
+    height: 200%;
+    width: 80%;
+}
+.switcher .row-content{
+    width: 100%;
+    height: calc(100% / 2);
+    padding: .5rem 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+.switcher .preview-of-img {
+    opacity: .5;    
+    height: 100%;
+    width: 30%;
+    background-color: transparent;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: .2rem solid black;
+}
+.switcher .preview-of-img.active {
+    opacity: 1;
+    border: .2rem solid white;
+}
+.switcher .preview-of-img picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.switcher .preview-of-img picture img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.prev, .next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.prev picture, .next picture {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.prev picture img, .next picture img {
+    width: 100%;
+    height: 60%;
+    object-fit: contain;
+}
+
+/*animations for change background*/
+.animation-img-1-2 {
+    animation-name: animate-img-1-2;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-1-2 {
+    0% {
+        background: url("./../img/self-driving-cars/img1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img2.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-2-1 {
+    animation-name: animate-img-2-1;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-2-1 {
+    0% {
+        background: url("./../img/self-driving-cars/img2.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-2-3 {
+    animation-name: animate-img-2-3;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-2-3 {
+    0% {
+        background: url("./../img/self-driving-cars/img2.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img3.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-3-2 {
+    animation-name: animate-img-3-2;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-3-2 {
+    0% {
+        background: url("./../img/self-driving-cars/img3.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img2.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-3-4 {
+    animation-name: animate-img-3-4;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-3-4 {
+    0% {
+        background: url("./../img/self-driving-cars/img3.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img4.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-4-3 {
+    animation-name: animate-img-4-3;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-4-3 {
+    0% {
+        background: url("./../img/self-driving-cars/img4.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img3.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-4-5 {
+    animation-name: animate-img-4-5;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-4-5 {
+    0% {
+        background: url("./../img/self-driving-cars/img4.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img5.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-5-4 {
+    animation-name: animate-img-5-4;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-5-4 {
+    0% {
+        background: url("./../img/self-driving-cars/img5.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img4.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-5-6 {
+    animation-name: animate-img-5-6;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-5-6 {
+    0% {
+        background: url("./../img/self-driving-cars/img5.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img6.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+.animation-img-6-5 {
+    animation-name: animate-img-6-5;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-img-6-5 {
+    0% {
+        background: url("./../img/self-driving-cars/img6.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    100% {
+        background: url("./../img/self-driving-cars/img5.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+/*animations for change info*/
+.animation-info-none {
+    animation-name: animate-info-none;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-info-none {
+    0% {
+        display: flex;
+    }
+    100% {
+        display: none;
+    }
+}
+.animation-info-flex {
+    animation-name: animate-info-flex;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+@keyframes animate-info-flex {
+    0% {
+        display: none;
+    }
+    100% {
+        display: flex;
+    }
+}
+
+/*for img 6*/
+.info .separator {
+    width: 100%;
+    background-color: rgba(2, 137, 255, 0.3);
+    backdrop-filter: blur(1rem);
+    border: .1rem solid rgb(2,137,255);
+    border-radius: 1rem;
+    padding: 2rem 1rem;
+    margin: .5rem 0;
+}
