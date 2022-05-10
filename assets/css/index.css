@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -87,7 +85,7 @@ body{
     /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(9,74,136,1) 90%); */
     background-color: black;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     padding: 3rem;
 }
 .mechatronic-meaning .info, .mechatronic-meaning .animation {
@@ -226,7 +224,7 @@ body{
     background-color: black;
     /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     padding: 3rem;
 }
 
@@ -340,7 +338,7 @@ body{
 } */
 .japan .title {
     display: flex;
-    font-family: 'Poppins';
+    font-family: 'Nunito';
     color: white;
     padding: 1rem;
     background-color: rgba(0,0,0,.3);

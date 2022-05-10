@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -76,7 +74,7 @@ body{
     box-shadow: 0 .5rem 1rem black; */
 }
 .container .content h2 {
-    font-family: 'Urbanist';
+    font-family: 'Nunito';
     font-size: 2rem;
     font-weight: bold;
 }
@@ -143,7 +141,7 @@ body{
     color: white;
     display: flex;
     align-items: center;
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 3rem;
     font-weight: bold;
     background-color: rgba(0,0,0,0.3);
