@@ -81,3 +81,37 @@ body{
     color: rgb(15, 17, 27);
     background-color: white;
 }
+.container-pp {
+    width: 100%;
+    overflow: hidden;
+    transform-origin: top;
+    transform: skewX(-45deg);
+    display: flex;
+    justify-content: center;
+}
+.my-pp {
+    overflow: hidden;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-pp iframe {
+    width: 100%;
+    object-fit: cover;
+}
+.separator {
+    width: 100%;
+    height: 20vh;
+}
+.references {
+    
+    font-family: 'Nunito';
+    width: 100%;
+    padding: 10rem;    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
