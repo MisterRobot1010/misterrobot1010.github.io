@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <input type="file" name="input" id="input" accept=".xlsx,.xls">
+    <button id="button">Leer</button>
+    <br/>
+    <div class="main-container">
+        <div class="easy-search-container">
+            <span>Búsqueda sencilla</span>
+            <div>
+                <span>Buscar en toda columna (en autor, en carpeta, en lugar, etc.):</span>
+                <input type="text" name="" class="easy-search-text">
+                <input type="button" value="Buscar exactamente" class="exact">
+                <input type="button" value="Buscar sin tanta exactitud" class="no-exact">
+            </div>
+            <a href="">Búsqueda avanzada</a>
+        </div>
+        <div class="coincidences-container">
+            <div class="coincidences" id="all-of-coincidences">
+                <!-- <div class="coincidence">
+                    <div class="photo-container">
+                        <div class="photo">
+
+                        </div>
+                    </div>
+                    <div class="info-container">
+                        <div class="title">
+                            <span>Título: Filosofía</span>
+                        </div>
+                        <div class="code">
+                            <span class="text-column">Código:&nbsp;</span>
+                            <span class="text-info">D00001</span>
+                        </div>
+                        <div class="author">
+                            <span class="text-column">Autor:&nbsp;</span>
+                            <span class="text-info">Pedro Gómez Danés</span>
+                        </div>
+                        <div class="topic">
+                            <span class="text-column">Tema:&nbsp;</span>
+                            <span class="text-info">Docencia</span>
+                        </div>
+                        <div class="subtopic">
+                            <span class="text-column">Subtema:&nbsp;</span>
+                            <span class="text-info">Estética</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="coincidence">
+                    <div class="photo-container">
+                        <div class="photo">
+
+                        </div>
+                    </div>
+                    <div class="info-container">
+                        <div class="title">
+                            <span>Título: Filosofía</span>
+                        </div>
+                        <div class="code">
+                            <span class="text-column">Código:&nbsp;</span>
+                            <span class="text-info">D00001</span>
+                        </div>
+                        <div class="author">
+                            <span class="text-column">Autor:&nbsp;</span>
+                            <span class="text-info">Pedro Gómez Danés</span>
+                        </div>
+                        <div class="topic">
+                            <span class="text-column">Tema:&nbsp;</span>
+                            <span class="text-info">Docencia</span>
+                        </div>
+                        <div class="subtopic">
+                            <span class="text-column">Subtema:&nbsp;</span>
+                            <span class="text-info">Estética</span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="control-coincidences">
+                <input type="button" value="Anterior" class="backward-button">
+                <div class="numbers-of-pages">
+                </div>
+                <input type="button" value="Siguiente" class="forward-button">
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="./index.js"></script>
+</body>
+</html>
