@@ -305,7 +305,68 @@ let events = {
         */        
         //El ser humano no siempre será perfecto, y no pondrá tal cual la palabra
         //Así que está por defecto que tengamos que convertir a lowercase y quitar signos extraños
-        
+
+        /*
+        Autor: Abraham
+        Título: Tiempo
+        */
+        let coincidences = []
+
+        //First, fill fastly
+        for (let i = 0; i < allOfData.length; i++) {
+            coincidences.push(i)
+            console.log("Hola")
+        }
+
+        let comprobationForAdd
+        let firstData
+        let secondData
+        let filteredCoincidences
+
+        array.forEach((element) => {
+            
+            if (element.dataType === "text") {
+
+                filteredCoincidences = []
+
+                coincidences.forEach((c) => {
+                    comprobationForAdd = false
+                    firstData = ""
+                    secondData = ""
+
+                    if (allOfData[c][element.column]) {
+                        firstData = functions.removeAccents(allOfData[c][element.column].toLowerCase())
+                        secondData = functions.removeAccents(element.data.toLowerCase())
+
+                        if ((element.condition === "es exactamente") && (firstData === secondData)) {
+                            comprobationForAdd = true
+                        }
+                        else if ((element.condition === "es similar a") && (firstData.includes(secondData))) {
+                            comprobationForAdd = true
+                        }
+                        else if ((element.condition === "no es") && !(firstData.includes(secondData))) {
+                            //Tambien involucra "no es" y "no incluye"
+                            comprobationForAdd = true
+                        }
+
+                    }
+
+                    if (comprobationForAdd) {
+                        if (!filteredCoincidences.includes(c)) {
+                            filteredCoincidences.push(c)
+                        }
+                    }
+                })
+
+                coincidences = filteredCoincidences
+            }
+            else {
+                alert("Hay un tipo de dato de número siendo evaluado en la búsqueda.")
+            }
+        })
+
+        return coincidences
+        //Aquí me quede
     },
     getAllCoincidencesForColumn: (column) => {
         let array = []
