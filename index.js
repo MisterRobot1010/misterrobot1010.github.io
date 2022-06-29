@@ -95,6 +95,37 @@ let functions = {
             }
         }
     },
+    justUpdateBeginAndEnd: () => {
+        //Forward
+        rangeForShowCoincidences = {
+            ...rangeForShowCoincidences,
+            showButtonForward: true
+        }
+
+        //Detect if we are in the finish
+        //So, I cannot advance after
+        if ((((rangeForShowCoincidences.end - rangeForShowCoincidences.begin) + 1) < rangeForShowCoincidences.amountOfElements) || ((rangeForShowCoincidences.end + 1) == (responseFromAllOfDataInText.length))) {
+            rangeForShowCoincidences = {
+                ...rangeForShowCoincidences,
+                showButtonForward: false
+            }
+        }
+
+        //Backward
+        rangeForShowCoincidences = {
+            ...rangeForShowCoincidences,
+            showButtonBackward: true
+        }
+
+        //Detect if we are in the beginning
+        //So, I cannot backward
+        if (rangeForShowCoincidences.begin == 0) {
+            rangeForShowCoincidences = {
+                ...rangeForShowCoincidences,
+                showButtonBackward: false
+            }
+        }
+    }
 }
 
 let events = {
@@ -105,12 +136,6 @@ let events = {
 
         
         for (let i = rangeForShowCoincidences.begin; i <= rangeForShowCoincidences.end; i++) {
-            if (responseFromAllOfDataInText[i]) {
-                console.log("Existe")
-            }
-            else {
-                console.log("No existe")
-            }
             allCoincidences += responseFromAllOfDataInText[i]
         }
         coincidencesContainer.innerHTML = ""
@@ -154,10 +179,39 @@ let events = {
         document.querySelectorAll(".control-coincidences .numbers-of-pages .page").forEach(element => {
             element.addEventListener("click", (e) => {
                 e.preventDefault()
-                console.log(e.target.innerHTML)
+
+                let selectedPage = parseInt(e.target.innerHTML)
+
+                console.log(selectedPage)
+                
+                //Modify rangeForShowCoincidences.begin
+                selectedPage -= 1
+                rangeForShowCoincidences = {
+                    ...rangeForShowCoincidences,
+                    begin: (selectedPage) * (rangeForShowCoincidences.amountOfElements)
+                }
+                
+                //Modify rangeForShowCoincidences.end
+                selectedPage += 1
+                
+                if (selectedPage == rangeForShowCoincidences.numberOfPages) {
+                    rangeForShowCoincidences = {
+                        ...rangeForShowCoincidences,
+                        end: responseFromAllOfDataInText.length - 1
+                    }
+                }
+                else {
+                    rangeForShowCoincidences = {
+                        ...rangeForShowCoincidences,
+                        end: rangeForShowCoincidences.begin + (rangeForShowCoincidences.amountOfElements - 1)
+                    }
+                }
+
+                functions.justUpdateBeginAndEnd()
                 events.showResponseFromAllOfDataInText()
+                
             })            
-        });
+        })
 
     },
     getBeginAndEndWithNumberOfPage: (num) => {
@@ -224,7 +278,7 @@ let events = {
                         }
                     }
                 }
-            });
+            })
         }
 
         let coincidentObjects = []
@@ -234,6 +288,24 @@ let events = {
         responseFromAllOfData = coincidentObjects
 
         events.fillResponseFromAllOfDataInText()
+    },
+    hardSearch: (array) => {
+        /* 
+        array = [
+            {
+                column: "Autor",
+                condition: "es exactamente || es similar a || no es ",
+                data: "",
+                dataType: "text || date"
+            },
+            {
+                ...
+            }
+        ]
+        */        
+        //El ser humano no siempre será perfecto, y no pondrá tal cual la palabra
+        //Así que está por defecto que tengamos que convertir a lowercase y quitar signos extraños
+        
     },
     getAllCoincidencesForColumn: (column) => {
         let array = []
