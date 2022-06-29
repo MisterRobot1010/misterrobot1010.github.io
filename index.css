@@ -4,6 +4,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* background: rgb(0 100 0 / 5%) !important;
+    outline: 1px solid green; */
 }
 html {
     font-size: 62.5%;
@@ -13,11 +15,9 @@ body{
     font-family: 'Nunito', sans-serif;
     scroll-behavior: smooth;
     /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
-    
 }
-
 .main-container {
-    width: 100vw;
+    width: 100%;
     min-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -28,24 +28,30 @@ body{
     flex-direction: column;
     min-height: 10vh;
     border: 0.1rem black solid;
-    margin: 1rem 1rem 0 1rem;
+    overflow: hidden;
+    margin: 2rem;
 }
 .coincidences-container {
     display: flex;
     flex-direction: column;
-    margin: 2rem 2rem 0 2rem;
     padding: 2rem;
     border: 0.1rem black solid;
+    overflow: hidden;
+    margin: 2rem;
 }
 .coincidences-container .coincidences {
     width: 100%;
     min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .coincidences-container .coincidence {
+    overflow: hidden;
     display: flex;
     margin: 1rem;
     flex-direction: row;
-    width: 100%;
+    width: 90%;
     min-height: 1rem;
     background-color: white;
     border-radius: 1rem;

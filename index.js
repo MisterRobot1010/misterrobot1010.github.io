@@ -100,13 +100,21 @@ let functions = {
 let events = {
     showResponseFromAllOfDataInText: () => {
         let coincidencesContainer = document.getElementById("all-of-coincidences")
+        let allCoincidences = ""
         //Coincidence
 
-        coincidencesContainer.innerHTML = ""
-        for (let i = rangeForShowCoincidences.begin; i <= rangeForShowCoincidences.end; i++) {
-            coincidencesContainer.innerHTML += responseFromAllOfDataInText[i]
-        }
         
+        for (let i = rangeForShowCoincidences.begin; i <= rangeForShowCoincidences.end; i++) {
+            if (responseFromAllOfDataInText[i]) {
+                console.log("Existe")
+            }
+            else {
+                console.log("No existe")
+            }
+            allCoincidences += responseFromAllOfDataInText[i]
+        }
+        coincidencesContainer.innerHTML = ""
+        coincidencesContainer.innerHTML = allCoincidences
 
         //Buttons y numOfPages
         let controlCoincidencesCointainer = document.querySelectorAll(".coincidences-container .control-coincidences")[0]
@@ -131,16 +139,24 @@ let events = {
             buttonForward.style.display = "none"
         }
 
-        let actualPageText
+        
+        let allPages = ""
         for (let i = 1; i <= rangeForShowCoincidences.numberOfPages; i++) {
-            actualPageText = `
+
+            allPages += `
                 <a class="page" href="#">${i}</a>
             `
-            listOfNumbersOfPages.innerHTML += actualPageText
+             
         }
 
+        listOfNumbersOfPages.innerHTML = allPages
+
         document.querySelectorAll(".control-coincidences .numbers-of-pages .page").forEach(element => {
-            console.log(element.innerHTML)            
+            element.addEventListener("click", (e) => {
+                e.preventDefault()
+                console.log(e.target.innerHTML)
+                events.showResponseFromAllOfDataInText()
+            })            
         });
 
     },
