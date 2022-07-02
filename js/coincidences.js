@@ -324,7 +324,6 @@ let events = {
         //First, fill fastly
         for (let i = 0; i < allOfData.length; i++) {
             coincidences.push(i)
-            console.log("Hola")
         }
 
         let comprobationForAdd
@@ -374,8 +373,14 @@ let events = {
             }
         })
 
-        return coincidences
         //Aquí me quede
+        let coincidentObjects = []
+        coincidences.forEach(element => {
+            coincidentObjects.push(allOfData[element])
+        });
+        responseFromAllOfData = coincidentObjects
+
+        events.fillResponseFromAllOfDataInText()
     },
     getAllCoincidencesForColumn: (column) => {
         let array = []
@@ -403,7 +408,7 @@ let events = {
         responseFromAllOfData = array
         
     },
-    getAllOfData: async () => {
+    getAllOfDataAndShowCoincidences: async () => {
         let promise = await fetch("https://misterrobot1010.github.io/assets/PGD_Base%20de%20datos_ORIGINAL.xlsx")
             .then(res => res.blob())
             .then(data => {
@@ -414,7 +419,19 @@ let events = {
                     let workbook = XLSX.read(data, {type: "binary"})
                     workbook.SheetNames.forEach(sheet => {
                         allOfData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
-                        console.log("Hecho")                
+                        console.log("Hecho")
+                        let url = new URL(window.location.href)
+                        request = JSON.parse(url.searchParams.get("request"))
+                        console.log(request)
+                        
+                        if (request.type === "easy") {
+                            events.easySearch(request.object.data, request.object.typeOfEasySearch)
+                            events.showResponseFromAllOfDataInText()
+                        }
+                        else if (request.type === "hard") {
+                            events.hardSearch(request.array)
+                            events.showResponseFromAllOfDataInText()
+                        }
                     })
                 }
             })
@@ -446,6 +463,7 @@ document.querySelectorAll(".coincidences-container .forward-button")[0].addEvent
     events.showResponseFromAllOfDataInText()
 })
 
+/*
 document.querySelectorAll(".easy-search-container .exact")[0].addEventListener("click", () => {
     let data = document.querySelectorAll(".easy-search-container .easy-search-text")[0].value
     events.easySearch(data, "exact")
@@ -457,5 +475,6 @@ document.querySelectorAll(".easy-search-container .no-exact")[0].addEventListene
     events.easySearch(data, "no exact")
     events.showResponseFromAllOfDataInText()
 })
+*/
 
-events.getAllOfData()
+events.getAllOfDataAndShowCoincidences()
