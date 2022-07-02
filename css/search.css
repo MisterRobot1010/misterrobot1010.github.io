@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* background: rgb(0 100 0 / 5%) !important;
+    outline: 1px solid green; */
+}
+html {
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
+    font-family: 'Nunito', sans-serif;
+    scroll-behavior: smooth;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
+}
+main {
+    width: 100%;
+    min-height: 100vh;
+}
+.area-menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menu {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+.menu .header {
+    width: 100%;
+    color: rgba(250,250,250,0.5);
+    display: flex;
+    background-color: rgb(51, 51, 51);
+}
+.menu .header span {
+    padding: 1rem;
+    margin: .5rem 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: .3s;
+}
+.menu .header span.selected {
+    background-color: rgb(40,40,40);
+    color: white;
+}
+.menu .container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.menu .container > * {
+    margin: .4rem 0;
+}
+.menu .container input[type="text"] {
+    padding: .7rem;
+    border: .1rem solid black;
+    border-left: .5rem solid #27ae60;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    outline: none;
+    font-family: 'Nunito', sans-serif;
+}
+.menu .container input[type="text"]::placeholder {
+    font-family: 'Nunito', sans-serif;
+}
+.menu .radio-easy-mode input[type="radio"] {
+    appearance: none;
+}
+.menu .radio-easy-mode {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.menu .radio-easy-mode label {
+    margin: 1rem;
+    border: .1rem solid black;
+    padding: 1rem;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: .5s;
+    text-align: center;
+    justify-content: space-around;
+}
+.menu .radio-easy-mode input[type="radio"]:checked + label {
+    border: .3rem solid #27ae60;
+    background-color: #27ae60;
+    color: white;
+    font-weight: bold;
+    box-shadow: -2px -2px 8px rgb(255 255 255), 
+                -2px -2px 12px rgb(255 255 255 / 50%), 
+                inset 2px 2px 4px rgb(0 0 0 / 10%), 
+                2px 2px 8px rgb(0 0 0 / 80%);
+}
+.menu .container #easy-search-button {
+    outline: none;
+    width: 90%;
+    align-self: center;
+    padding: 1rem;
+    background-color: white;
+    border: .2rem solid #27ae60;
+    color: #27ae60;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    transition: .5s;
+    cursor: pointer;
+}
+.menu .container #easy-search-button:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+    color: white;
+}
+.menu .container #hard-search-button {
+    margin: 1rem 0;
+    outline: none;
+    width: 90%;
+    align-self: center;
+    padding: 1rem;
+    background-color: white;
+    border: .2rem solid #27ae60;
+    color: #27ae60;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    transition: .5s;
+    cursor: pointer;
+}
+.menu .container #hard-search-button:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+    color: white;
+}
+.container .separator {
+    width: 100%;
+    align-self: center;
+    height: 1rem;
+    margin-bottom: .9rem;
+    border-bottom: .1rem solid rgba(0,0,0,0.5);
+}
+.area-hard-texts {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.area-hard-texts > input[type="text"]{
+    width: 60%;
+}
+.area-hard-texts .radio-hard-texts input[type="radio"]{
+    appearance: none;
+}
+.area-hard-texts .radio-hard-texts {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.area-hard-texts .radio-hard-texts label {
+    border: .1rem solid black;
+    padding: 1rem;
+    cursor: pointer;
+    transition: .3s;
+}
+.area-hard-texts .radio-hard-texts label:nth-of-type(1) {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+.area-hard-texts .radio-hard-texts label:nth-of-type(3) {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+.area-hard-texts .radio-hard-texts input[type="radio"]:checked + label {
+    border: .1rem solid #27ae60;
+    background-color: #27ae60;
+    color: white;
+}
