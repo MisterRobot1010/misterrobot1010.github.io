@@ -3,7 +3,7 @@ let URLOfExcelFile = "https://misterrobot1010.github.io/assets/PGD_Base%20de%20d
 let allOfData = []
 let responseFromAllOfData
 let rangeForShowCoincidences = {
-    amountOfElements: 10,    
+    amountOfElements: 10, //Amount for show by page   
     begin: 0,
     end: null,
     showButtonForward: null,
@@ -281,6 +281,7 @@ let events = {
             })            
         })
 
+        document.querySelector(".coincidences-container .amount-coincidences .content").innerHTML = (responseFromAllOfDataInText.length === 0 ? "Mostrando 0 - 0 de 0 resultados." : "Mostrando " + (rangeForShowCoincidences.begin + 1) + " - " + (rangeForShowCoincidences.end + 1) + " de " + (responseFromAllOfDataInText.length) + " resultados.")
     },
     getBeginAndEndWithNumberOfPage: (num) => {
         
@@ -478,7 +479,7 @@ let events = {
         let secondData
         let secondDataInArray
         let actualColumn
-        let counterOfJustWords = 0
+        let counterOfJustWords = 0 //Not negatives
         let someWordInTrue = false
 
         if (column === "All(string)") {
@@ -498,7 +499,7 @@ let events = {
             stateOfActualEquality = false
             firstData = eq.phrase //"titulo"
 
-            if (!firstData.includes(" ")) {
+            if ((!firstData.includes(" ")) && (eq.comparison === "similar")) {
                 counterOfJustWords++
             }
 
@@ -766,7 +767,11 @@ let events = {
                         let url = new URL(window.location.href)
                         request = JSON.parse(url.searchParams.get("request"))
                         console.log(request)
+
+                        events.search(request.clauses)
+                        events.showResponseFromAllOfDataInText()
                         
+                        /*
                         if (request.type === "easy") {
                             events.easySearch(request.object.data, request.object.typeOfEasySearch)
                             events.showResponseFromAllOfDataInText()
@@ -775,6 +780,7 @@ let events = {
                             events.hardSearch(request.array)
                             events.showResponseFromAllOfDataInText()
                         }
+                        */
                     })
                 }
             })

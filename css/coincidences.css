@@ -122,3 +122,6 @@ body{
 .coincidences-container .control-coincidences .numbers-of-pages * {
     margin: .5rem;
 }
+.coincidences-container .amount-coincidences{
+    padding: 0rem 2rem;
+}
