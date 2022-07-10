@@ -1,4 +1,5 @@
 let selectedFile
+let URLOfExcelFile = "https://misterrobot1010.github.io/assets/PGD_Base%20de%20datos_ORIGINAL.xlsx"
 let allOfData = []
 let responseFromAllOfData
 let rangeForShowCoincidences = {
@@ -125,6 +126,73 @@ let functions = {
                 showButtonBackward: false
             }
         }
+    },
+    eraseSpacesFromBeginningAndFinal: (data) => {
+        let finalData = ""
+
+        //Beginning
+        let positionOfBeginning = null
+        for (let i = 0; (i < data.length) && (positionOfBeginning === null) ; i++) {
+            if (data[i] !== " ") {
+                positionOfBeginning = i
+            }
+        }
+
+        //Final
+        let positionOfFinal = null
+        for (let i = (data.length - 1); (i >= 0) && (positionOfFinal === null) ; i--) {
+            if (data[i] !== " ") {
+                positionOfFinal = i
+            }
+        }
+
+        for (let i = positionOfBeginning; i <= positionOfFinal; i++) {
+            finalData += data[i]
+        }
+
+        return finalData
+    },
+    convertMultipleSpacesToOneSpace: (data) => {
+        let finalData = ""
+        let i = 0
+        let initialIndex
+        let finalIndex
+        let nextCharIsLetter
+
+        if (data.length > 0) {
+            while (i < data.length) {
+                if (data[i] === " ") {
+                    finalData += data[i]
+                    initialIndex = i
+                    finalIndex = i + 1
+                    nextCharIsLetter = false
+
+                    while ((finalIndex < data.length) && (!nextCharIsLetter)) {
+                        if (data[finalIndex] !== " ") {
+                            nextCharIsLetter = true // => finalIndex
+                        }
+                        else {
+                            finalIndex++
+                        }
+                    }
+
+                    i = finalIndex
+                }
+                else {
+                    finalData += data[i]
+                    i++
+                }
+            }
+        }
+
+        return finalData
+    },
+    returnCorrectData: (data) => {
+        let correctData = functions.eraseSpacesFromBeginningAndFinal(data)
+        correctData = functions.convertMultipleSpacesToOneSpace(correctData)
+        correctData = functions.removeAccents(correctData)
+
+        return correctData
     }
 }
 
@@ -253,6 +321,181 @@ let events = {
             responseFromAllOfDataInText.push(actualElementInText)
         })
         functions.setForRangeCoincidencesInitial()
+    },
+    returnEqualitiesInData: (initialData) => {
+        //word, phrase
+        //similar, different
+
+        /* 
+            [
+                {
+                    phrase: "hello" || "hello world",
+                    comparison: "similar" || "different"
+                }
+            ]
+        */
+
+        //data = `Hola Mundo "Hola mundo" -Hola -"Hola mundo"`
+        let actualSentence
+        let searchedChar
+        let data = functions.returnCorrectData(initialData)
+        let initialIndex
+        let indexForNextSentence
+        let sentences = []
+        if (data.length > 0) {
+            let i = 0
+
+            while (i < data.length) {
+                actualSentence = ""
+                searchedChar = null
+                initialIndex = null
+                indexForNextSentence = null
+
+                if (data[i] === `"`) {
+                    searchedChar = `"`
+                    actualSentence += data[i]
+                    initialIndex = i + 1
+                }
+                else if (data[i] === "-") {
+                    actualSentence += data[i]
+                    initialIndex = i + 1                    
+
+                    if ((i + 1) < data.length) {
+                        if (data[i + 1] === `"`) {
+                            searchedChar = `"`
+                            actualSentence += data[i + 1]
+                            initialIndex++
+                        }
+                        else {
+                            searchedChar = " "
+                            actualSentence += data[i + 1]
+                            initialIndex++
+                        }
+                    }
+                }
+                else {
+                    searchedChar = " "
+                    actualSentence += data[i]
+                    initialIndex = i + 1
+                }
+                
+                if (searchedChar !== null) {
+                    for (let j = initialIndex; (j < data.length) && (indexForNextSentence === null) ; j++) {
+                        if (data[j] !== searchedChar) {
+                            actualSentence += data[j]
+                        }
+                        else {
+                            //" " ó `"`
+                            if (data[j] === " ") {
+                                indexForNextSentence = j + 1
+                            }
+                            else if (data[j] === `"`) {
+                                actualSentence += data[j]
+                                indexForNextSentence = j + 2
+                            }
+                        }
+                    }
+                }
+
+                //Change
+                if (indexForNextSentence === null) {
+                    i = data.length
+                }
+                else {
+                    i = indexForNextSentence
+                }
+
+                
+                if (!sentences.includes(actualSentence)) {
+                    sentences.push(actualSentence)
+                }
+            }
+        }
+
+        let equalities = []
+        let actualEquality
+        initialIndex = null
+        let finalIndex = null
+        let actualPhrase
+        
+        sentences.forEach((sen) => {
+            //sen[0] = a || - || `"`
+            actualEquality = null
+            initialIndex = null
+            finalIndex = null
+            actualPhrase = ""
+
+            if (sen[0] === `"`) {
+                initialIndex = 1
+                finalIndex = sen.length - 2
+
+                for (let i = initialIndex; i <= finalIndex; i++) {
+                    actualPhrase += sen[i]
+                }
+
+                actualEquality = {
+                    phrase: actualPhrase,
+                    comparison: "similar"
+                }
+            }
+            else if (sen[0] === "-") {
+                if (sen[1] === `"`) {
+                    initialIndex = 2
+                    finalIndex = sen.length - 2
+                }
+                else {
+                    initialIndex = 1
+                    finalIndex = sen.length - 1
+                }
+
+                for (let i = initialIndex; i <= finalIndex; i++) {
+                    actualPhrase += sen[i]
+                }
+
+                actualEquality = {
+                    phrase: actualPhrase,
+                    comparison: "different"
+                }
+            }
+            else {
+                actualEquality = {
+                    phrase: sen,
+                    comparison: "similar"
+                }
+            }
+
+            equalities.push(actualEquality)
+        })
+
+        return equalities
+    },
+    search: (clauses) => {
+        /* 
+            clauses = [
+                {
+                    column: "All(string)" || "Autor" || ...,
+                    data: `hello` || `"hello world"` || `-Hello` || `-"Hello World"`, => true
+                    dataType: "text" || "date"
+                } => true,
+                {
+                    column: "Autor" || ...,
+                    data: `hello` || `"hello world"` || `-Hello` || `-"Hello World"`, => true
+                    dataType: "text" || "date"
+                } => true,
+            ]
+        */
+        let coincidences = []
+        let correctClauses
+        let correctCoincidence
+        for (let i = 0; i < allOfData.length; i++) {
+            //allOfData[i]
+            correctClauses = 0
+            correctCoincidence = null
+            for (let j = 0; j < clauses.length; j++) {
+                //clauses[j].data
+
+            }
+        }
     },
     easySearch: (data, typeOfEasySearch) => {
         let coincidences = []
@@ -409,7 +652,7 @@ let events = {
         
     },
     getAllOfDataAndShowCoincidences: async () => {
-        let promise = await fetch("https://misterrobot1010.github.io/assets/PGD_Base%20de%20datos_ORIGINAL.xlsx")
+        let promise = await fetch(URLOfExcelFile)
             .then(res => res.blob())
             .then(data => {
                 let fileReader = new FileReader()

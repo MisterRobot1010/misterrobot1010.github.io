@@ -31,30 +31,33 @@ let events = {
         document.getElementById("easy-search-button").addEventListener("click", () => {
             let data = document.querySelector(".area-menu .menu .container .easy-search-text").value
 
-            let rdbtn = document.getElementsByName("group-mode")
-            let typeOfEasySearch
+            console.log(data)
 
-            if (rdbtn[0].checked) {
-                typeOfEasySearch = "exact"
-            }
-            else if (rdbtn[1].checked) {
-                typeOfEasySearch = "similar"
-            }
-            else if (rdbtn[2].checked) {
-                typeOfEasySearch = "not"
-            }
 
-            request = {
-                ...request,
-                type: "easy",
-                array: null,
-                object: {
-                    data: data,
-                    typeOfEasySearch: typeOfEasySearch
-                }
-            }
+            // let rdbtn = document.getElementsByName("group-mode")
+            // let typeOfEasySearch
 
-            location.href = "./coincidences.html?request=" + (JSON.stringify(request))
+            // if (rdbtn[0].checked) {
+            //     typeOfEasySearch = "exact"
+            // }
+            // else if (rdbtn[1].checked) {
+            //     typeOfEasySearch = "similar"
+            // }
+            // else if (rdbtn[2].checked) {
+            //     typeOfEasySearch = "not"
+            // }
+
+            // request = {
+            //     ...request,
+            //     type: "easy",
+            //     array: null,
+            //     object: {
+            //         data: data,
+            //         typeOfEasySearch: typeOfEasySearch
+            //     }
+            // }
+
+            // location.href = "./coincidences.html?request=" + (JSON.stringify(request))
             
 
             //location.href = "./coincidences.html?data=hola"
