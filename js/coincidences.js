@@ -190,7 +190,7 @@ let functions = {
     returnCorrectData: (data) => {
         let correctData = functions.eraseSpacesFromBeginningAndFinal(data)
         correctData = functions.convertMultipleSpacesToOneSpace(correctData)
-        correctData = functions.removeAccents(correctData)
+        correctData = functions.removeAccents(correctData).toLowerCase()
 
         return correctData
     }
@@ -469,6 +469,84 @@ let events = {
 
         return equalities
     },
+    comparisonWithText: (record, equalities, column) => {
+        //record[Autor], record[Carpeta], etc.
+        //equalities
+        let stateOfActualEquality = null
+        let columnsForSearch
+        let firstData
+        let secondData
+        let secondDataInArray
+        let actualColumn
+        let counterOfJustWords = 0
+        let someWordInTrue = false
+
+        if (column === "All(string)") {
+            columnsForSearch = columns
+        }
+        else {
+            columnsForSearch = []
+            columnsForSearch.push(column)
+        }
+
+        let statesOfEqualities = []
+
+        //Para retornar este record, todas las equalities me tienen que devolver true
+        //Caso especial: Si hay 3 o más "palabras solamente", retorna true automaticamente
+
+        equalities.forEach(eq => {
+            stateOfActualEquality = false
+            firstData = eq.phrase //"titulo"
+
+            if (!firstData.includes(" ")) {
+                counterOfJustWords++
+            }
+
+            secondData = null
+            secondDataInArray = null
+            actualColumn = null
+
+            for (let i = 0; (i < columnsForSearch.length) && (!stateOfActualEquality) ; i++) {
+                actualColumn = columnsForSearch[i]
+                if (typeof record[actualColumn] === "string") {
+                    secondData = functions.removeAccents(record[actualColumn]).toLowerCase() // "del libro"
+                    secondDataInArray = secondData.split(" ")
+
+                    for (let j = 0; (j < secondDataInArray.length) && (!stateOfActualEquality) ; j++) {
+                        //secondDataInArray[j]
+                        if (secondDataInArray[j] === firstData) {
+                            stateOfActualEquality = true
+                            someWordInTrue = true
+                        }
+                    }
+
+                    if (secondData.includes(firstData)) {
+                        stateOfActualEquality = true
+                    }
+                }
+            }
+
+            if ((eq.comparison === "similar") && (stateOfActualEquality)) {
+                //Alguna columna tendrá que retornar true
+                statesOfEqualities.push(true)
+            }
+            else if ((eq.comparison === "different") && (!stateOfActualEquality)) {
+                //Todas tienen que retornar false
+                statesOfEqualities.push(true)
+            }
+            else {
+                statesOfEqualities.push(false)
+            }
+        })
+        
+        if (((counterOfJustWords >= 3) && (someWordInTrue)) || (!statesOfEqualities.includes(false))) {
+            return true
+        }
+        else {
+            return false
+        }
+    },
+    comparisonWithDate: () => {},
     search: (clauses) => {
         /* 
             clauses = [
@@ -485,16 +563,30 @@ let events = {
             ]
         */
         let coincidences = []
-        let correctClauses
+        let correctClauses = []
         let correctCoincidence
-        for (let i = 0; i < allOfData.length; i++) {
-            //allOfData[i]
-            correctClauses = 0
+        let stateOfActualClause
+
+        let array = [allOfData[0], allOfData[1]]
+
+        for (let i = 0; i < array.length; i++) {
+            //allOfData[i] => actualRecord
+            correctClauses = []
             correctCoincidence = null
             for (let j = 0; j < clauses.length; j++) {
                 //clauses[j].data
+                stateOfActualClause = false
+                if (clauses[j].dataType === "text") {
+                    stateOfActualClause = events.comparisonWithText(array[i], events.returnEqualitiesInData(clauses[j].data), clauses[j].column)
+                }
+                else if (clauses[j].dataType === "date") {
+                    alert("Hay fechas involucradas")
+                }
 
+                correctClauses.push(stateOfActualClause)
             }
+
+            console.log(correctClauses)
         }
     },
     easySearch: (data, typeOfEasySearch) => {
