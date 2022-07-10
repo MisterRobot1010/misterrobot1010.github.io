@@ -567,9 +567,7 @@ let events = {
         let correctCoincidence
         let stateOfActualClause
 
-        let array = [allOfData[0], allOfData[1]]
-
-        for (let i = 0; i < array.length; i++) {
+        for (let i = 0; i < allOfData.length; i++) {
             //allOfData[i] => actualRecord
             correctClauses = []
             correctCoincidence = null
@@ -577,7 +575,7 @@ let events = {
                 //clauses[j].data
                 stateOfActualClause = false
                 if (clauses[j].dataType === "text") {
-                    stateOfActualClause = events.comparisonWithText(array[i], events.returnEqualitiesInData(clauses[j].data), clauses[j].column)
+                    stateOfActualClause = events.comparisonWithText(allOfData[i], events.returnEqualitiesInData(clauses[j].data), clauses[j].column)
                 }
                 else if (clauses[j].dataType === "date") {
                     alert("Hay fechas involucradas")
@@ -586,8 +584,18 @@ let events = {
                 correctClauses.push(stateOfActualClause)
             }
 
-            console.log(correctClauses)
+            if (!correctClauses.includes(false)) {
+                coincidences.push(i)
+            }
         }
+
+        let coincidentObjects = []
+        coincidences.forEach(element => {
+            coincidentObjects.push(allOfData[element])
+        });
+        responseFromAllOfData = coincidentObjects
+
+        events.fillResponseFromAllOfDataInText()
     },
     easySearch: (data, typeOfEasySearch) => {
         let coincidences = []
