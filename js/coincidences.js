@@ -209,6 +209,54 @@ let events = {
         coincidencesContainer.innerHTML = ""
         coincidencesContainer.innerHTML = allCoincidences
 
+        document.querySelectorAll(".coincidences .coincidence").forEach((element) => {
+            element.addEventListener("click", (e) => {
+                let coincidence = null
+
+                e.path.forEach(component => {
+                    
+                    if (component.classList) {
+                        if (component.classList.contains("coincidence")) {
+                            coincidence = component
+                        }
+                    }
+                })
+                
+                let index = Array.from(coincidence.parentElement.children).indexOf(coincidence)
+
+                let indexInResponseFromAllOfData = (rangeForShowCoincidences.begin) + index
+
+                //let selectedCoincidence = responseFromAllOfData[indexInResponseFromAllOfData]
+                
+                /* 
+                    array = [
+                        {
+                            indexInAllOfData: 19,
+                            code: "D0001"
+                        }
+                    ]
+                */
+                
+                let objectWithInfoCoincidence = {
+                    code: responseFromAllOfData[indexInResponseFromAllOfData]["Código"],
+                    indexInAllOfData: null
+                }
+
+                allOfData.forEach((d, indexD) => {
+                    if (d["Código"] === objectWithInfoCoincidence.code) {
+                        objectWithInfoCoincidence = {
+                            ...objectWithInfoCoincidence,
+                            indexInAllOfData: indexD
+                        }
+                    } 
+                })
+
+                let coincidencesForSend = [objectWithInfoCoincidence]
+
+                location.href = "./single-view-coincidences.html?coincidences=" + (JSON.stringify(coincidencesForSend))
+            })
+        })
+
         //Buttons y numOfPages
         let controlCoincidencesCointainer = document.querySelectorAll(".coincidences-container .control-coincidences")[0]
         controlCoincidencesCointainer.style.display = "flex"
@@ -281,7 +329,9 @@ let events = {
             })            
         })
 
-        document.querySelector(".coincidences-container .amount-coincidences .content").innerHTML = (responseFromAllOfDataInText.length === 0 ? "Mostrando 0 - 0 de 0 resultados." : "Mostrando " + (rangeForShowCoincidences.begin + 1) + " - " + (rangeForShowCoincidences.end + 1) + " de " + (responseFromAllOfDataInText.length) + " resultados.")
+        document.querySelectorAll(".coincidences-container .amount-coincidences .content").forEach(containerOfAmount => {
+            containerOfAmount.innerHTML = (responseFromAllOfDataInText.length === 0 ? "Mostrando 0 - 0 de 0 resultados." : "Mostrando " + (rangeForShowCoincidences.begin + 1) + " - " + (rangeForShowCoincidences.end + 1) + " de " + (responseFromAllOfDataInText.length) + (responseFromAllOfDataInText.length === 1 ? " resultado" : " resultados"))
+        })
     },
     getBeginAndEndWithNumberOfPage: (num) => {
         
@@ -801,7 +851,6 @@ document.getElementById("button").addEventListener("click", async () => {
     }
 })
 */
-
 document.querySelectorAll(".coincidences-container .backward-button")[0].addEventListener("click", () => {
     functions.updateBeginAndEndForRangeCoincidencesBackward()
     events.showResponseFromAllOfDataInText()
@@ -811,7 +860,6 @@ document.querySelectorAll(".coincidences-container .forward-button")[0].addEvent
     functions.updateBeginAndEndForRangeCoincidencesForward()
     events.showResponseFromAllOfDataInText()
 })
-
 /*
 document.querySelectorAll(".easy-search-container .exact")[0].addEventListener("click", () => {
     let data = document.querySelectorAll(".easy-search-container .easy-search-text")[0].value
