@@ -1,8 +1,9 @@
 let selectedFile
+let URLOfExcelFile = "https://misterrobot1010.github.io/assets/PGD_Base%20de%20datos_ORIGINAL.xlsx"
 let allOfData = []
 let responseFromAllOfData
 let rangeForShowCoincidences = {
-    amountOfElements: 10,    
+    amountOfElements: 10, //Amount for show by page   
     begin: 0,
     end: null,
     showButtonForward: null,
@@ -125,6 +126,73 @@ let functions = {
                 showButtonBackward: false
             }
         }
+    },
+    eraseSpacesFromBeginningAndFinal: (data) => {
+        let finalData = ""
+
+        //Beginning
+        let positionOfBeginning = null
+        for (let i = 0; (i < data.length) && (positionOfBeginning === null) ; i++) {
+            if (data[i] !== " ") {
+                positionOfBeginning = i
+            }
+        }
+
+        //Final
+        let positionOfFinal = null
+        for (let i = (data.length - 1); (i >= 0) && (positionOfFinal === null) ; i--) {
+            if (data[i] !== " ") {
+                positionOfFinal = i
+            }
+        }
+
+        for (let i = positionOfBeginning; i <= positionOfFinal; i++) {
+            finalData += data[i]
+        }
+
+        return finalData
+    },
+    convertMultipleSpacesToOneSpace: (data) => {
+        let finalData = ""
+        let i = 0
+        let initialIndex
+        let finalIndex
+        let nextCharIsLetter
+
+        if (data.length > 0) {
+            while (i < data.length) {
+                if (data[i] === " ") {
+                    finalData += data[i]
+                    initialIndex = i
+                    finalIndex = i + 1
+                    nextCharIsLetter = false
+
+                    while ((finalIndex < data.length) && (!nextCharIsLetter)) {
+                        if (data[finalIndex] !== " ") {
+                            nextCharIsLetter = true // => finalIndex
+                        }
+                        else {
+                            finalIndex++
+                        }
+                    }
+
+                    i = finalIndex
+                }
+                else {
+                    finalData += data[i]
+                    i++
+                }
+            }
+        }
+
+        return finalData
+    },
+    returnCorrectData: (data) => {
+        let correctData = functions.eraseSpacesFromBeginningAndFinal(data)
+        correctData = functions.convertMultipleSpacesToOneSpace(correctData)
+        correctData = functions.removeAccents(correctData).toLowerCase()
+
+        return correctData
     }
 }
 
@@ -140,6 +208,54 @@ let events = {
         }
         coincidencesContainer.innerHTML = ""
         coincidencesContainer.innerHTML = allCoincidences
+
+        document.querySelectorAll(".coincidences .coincidence").forEach((element) => {
+            element.addEventListener("click", (e) => {
+                let coincidence = null
+
+                e.path.forEach(component => {
+                    
+                    if (component.classList) {
+                        if (component.classList.contains("coincidence")) {
+                            coincidence = component
+                        }
+                    }
+                })
+                
+                let index = Array.from(coincidence.parentElement.children).indexOf(coincidence)
+
+                let indexInResponseFromAllOfData = (rangeForShowCoincidences.begin) + index
+
+                //let selectedCoincidence = responseFromAllOfData[indexInResponseFromAllOfData]
+                
+                /* 
+                    array = [
+                        {
+                            indexInAllOfData: 19,
+                            code: "D0001"
+                        }
+                    ]
+                */
+                
+                let objectWithInfoCoincidence = {
+                    code: responseFromAllOfData[indexInResponseFromAllOfData]["Código"],
+                    indexInAllOfData: null
+                }
+
+                allOfData.forEach((d, indexD) => {
+                    if (d["Código"] === objectWithInfoCoincidence.code) {
+                        objectWithInfoCoincidence = {
+                            ...objectWithInfoCoincidence,
+                            indexInAllOfData: indexD
+                        }
+                    } 
+                })
+
+                let coincidencesForSend = [objectWithInfoCoincidence]
+
+                location.href = "./single-view-coincidences.html?coincidences=" + (JSON.stringify(coincidencesForSend))
+            })
+        })
 
         //Buttons y numOfPages
         let controlCoincidencesCointainer = document.querySelectorAll(".coincidences-container .control-coincidences")[0]
@@ -213,6 +329,9 @@ let events = {
             })            
         })
 
+        document.querySelectorAll(".coincidences-container .amount-coincidences .content").forEach(containerOfAmount => {
+            containerOfAmount.innerHTML = (responseFromAllOfDataInText.length === 0 ? "Mostrando 0 - 0 de 0 resultados." : "Mostrando " + (rangeForShowCoincidences.begin + 1) + " - " + (rangeForShowCoincidences.end + 1) + " de " + (responseFromAllOfDataInText.length) + (responseFromAllOfDataInText.length === 1 ? " resultado" : " resultados"))
+        })
     },
     getBeginAndEndWithNumberOfPage: (num) => {
         
@@ -253,6 +372,281 @@ let events = {
             responseFromAllOfDataInText.push(actualElementInText)
         })
         functions.setForRangeCoincidencesInitial()
+    },
+    returnEqualitiesInData: (initialData) => {
+        //word, phrase
+        //similar, different
+
+        /* 
+            [
+                {
+                    phrase: "hello" || "hello world",
+                    comparison: "similar" || "different"
+                }
+            ]
+        */
+
+        //data = `Hola Mundo "Hola mundo" -Hola -"Hola mundo"`
+        let actualSentence
+        let searchedChar
+        let data = functions.returnCorrectData(initialData)
+        let initialIndex
+        let indexForNextSentence
+        let sentences = []
+        if (data.length > 0) {
+            let i = 0
+
+            while (i < data.length) {
+                actualSentence = ""
+                searchedChar = null
+                initialIndex = null
+                indexForNextSentence = null
+
+                if (data[i] === `"`) {
+                    searchedChar = `"`
+                    actualSentence += data[i]
+                    initialIndex = i + 1
+                }
+                else if (data[i] === "-") {
+                    actualSentence += data[i]
+                    initialIndex = i + 1                    
+
+                    if ((i + 1) < data.length) {
+                        if (data[i + 1] === `"`) {
+                            searchedChar = `"`
+                            actualSentence += data[i + 1]
+                            initialIndex++
+                        }
+                        else {
+                            searchedChar = " "
+                            actualSentence += data[i + 1]
+                            initialIndex++
+                        }
+                    }
+                }
+                else {
+                    searchedChar = " "
+                    actualSentence += data[i]
+                    initialIndex = i + 1
+                }
+                
+                if (searchedChar !== null) {
+                    for (let j = initialIndex; (j < data.length) && (indexForNextSentence === null) ; j++) {
+                        if (data[j] !== searchedChar) {
+                            actualSentence += data[j]
+                        }
+                        else {
+                            //" " ó `"`
+                            if (data[j] === " ") {
+                                indexForNextSentence = j + 1
+                            }
+                            else if (data[j] === `"`) {
+                                actualSentence += data[j]
+                                indexForNextSentence = j + 2
+                            }
+                        }
+                    }
+                }
+
+                //Change
+                if (indexForNextSentence === null) {
+                    i = data.length
+                }
+                else {
+                    i = indexForNextSentence
+                }
+
+                
+                if (!sentences.includes(actualSentence)) {
+                    sentences.push(actualSentence)
+                }
+            }
+        }
+
+        let equalities = []
+        let actualEquality
+        initialIndex = null
+        let finalIndex = null
+        let actualPhrase
+        
+        sentences.forEach((sen) => {
+            //sen[0] = a || - || `"`
+            actualEquality = null
+            initialIndex = null
+            finalIndex = null
+            actualPhrase = ""
+
+            if (sen[0] === `"`) {
+                initialIndex = 1
+                finalIndex = sen.length - 2
+
+                for (let i = initialIndex; i <= finalIndex; i++) {
+                    actualPhrase += sen[i]
+                }
+
+                actualEquality = {
+                    phrase: actualPhrase,
+                    comparison: "similar"
+                }
+            }
+            else if (sen[0] === "-") {
+                if (sen[1] === `"`) {
+                    initialIndex = 2
+                    finalIndex = sen.length - 2
+                }
+                else {
+                    initialIndex = 1
+                    finalIndex = sen.length - 1
+                }
+
+                for (let i = initialIndex; i <= finalIndex; i++) {
+                    actualPhrase += sen[i]
+                }
+
+                actualEquality = {
+                    phrase: actualPhrase,
+                    comparison: "different"
+                }
+            }
+            else {
+                actualEquality = {
+                    phrase: sen,
+                    comparison: "similar"
+                }
+            }
+
+            equalities.push(actualEquality)
+        })
+
+        return equalities
+    },
+    comparisonWithText: (record, equalities, column) => {
+        //record[Autor], record[Carpeta], etc.
+        //equalities
+        let stateOfActualEquality = null
+        let columnsForSearch
+        let firstData
+        let secondData
+        let secondDataInArray
+        let actualColumn
+        let counterOfJustWords = 0 //Not negatives
+        let someWordInTrue = false
+
+        if (column === "All(string)") {
+            columnsForSearch = columns
+        }
+        else {
+            columnsForSearch = []
+            columnsForSearch.push(column)
+        }
+
+        let statesOfEqualities = []
+
+        //Para retornar este record, todas las equalities me tienen que devolver true
+        //Caso especial: Si hay 3 o más "palabras solamente", retorna true automaticamente
+
+        equalities.forEach(eq => {
+            stateOfActualEquality = false
+            firstData = eq.phrase //"titulo"
+
+            if ((!firstData.includes(" ")) && (eq.comparison === "similar")) {
+                counterOfJustWords++
+            }
+
+            secondData = null
+            secondDataInArray = null
+            actualColumn = null
+
+            for (let i = 0; (i < columnsForSearch.length) && (!stateOfActualEquality) ; i++) {
+                actualColumn = columnsForSearch[i]
+                if (typeof record[actualColumn] === "string") {
+                    secondData = functions.removeAccents(record[actualColumn]).toLowerCase() // "del libro"
+                    secondDataInArray = secondData.split(" ")
+
+                    for (let j = 0; (j < secondDataInArray.length) && (!stateOfActualEquality) ; j++) {
+                        //secondDataInArray[j]
+                        if (secondDataInArray[j] === firstData) {
+                            stateOfActualEquality = true
+                            someWordInTrue = true
+                        }
+                    }
+
+                    if (secondData.includes(firstData)) {
+                        stateOfActualEquality = true
+                    }
+                }
+            }
+
+            if ((eq.comparison === "similar") && (stateOfActualEquality)) {
+                //Alguna columna tendrá que retornar true
+                statesOfEqualities.push(true)
+            }
+            else if ((eq.comparison === "different") && (!stateOfActualEquality)) {
+                //Todas tienen que retornar false
+                statesOfEqualities.push(true)
+            }
+            else {
+                statesOfEqualities.push(false)
+            }
+        })
+        
+        if (((counterOfJustWords >= 3) && (someWordInTrue)) || (!statesOfEqualities.includes(false))) {
+            return true
+        }
+        else {
+            return false
+        }
+    },
+    comparisonWithDate: () => {},
+    search: (clauses) => {
+        /* 
+            clauses = [
+                {
+                    column: "All(string)" || "Autor" || ...,
+                    data: `hello` || `"hello world"` || `-Hello` || `-"Hello World"`, => true
+                    dataType: "text" || "date"
+                } => true,
+                {
+                    column: "Autor" || ...,
+                    data: `hello` || `"hello world"` || `-Hello` || `-"Hello World"`, => true
+                    dataType: "text" || "date"
+                } => true,
+            ]
+        */
+        let coincidences = []
+        let correctClauses = []
+        let correctCoincidence
+        let stateOfActualClause
+
+        for (let i = 0; i < allOfData.length; i++) {
+            //allOfData[i] => actualRecord
+            correctClauses = []
+            correctCoincidence = null
+            for (let j = 0; j < clauses.length; j++) {
+                //clauses[j].data
+                stateOfActualClause = false
+                if (clauses[j].dataType === "text") {
+                    stateOfActualClause = events.comparisonWithText(allOfData[i], events.returnEqualitiesInData(clauses[j].data), clauses[j].column)
+                }
+                else if (clauses[j].dataType === "date") {
+                    alert("Hay fechas involucradas")
+                }
+
+                correctClauses.push(stateOfActualClause)
+            }
+
+            if (!correctClauses.includes(false)) {
+                coincidences.push(i)
+            }
+        }
+
+        let coincidentObjects = []
+        coincidences.forEach(element => {
+            coincidentObjects.push(allOfData[element])
+        });
+        responseFromAllOfData = coincidentObjects
+
+        events.fillResponseFromAllOfDataInText()
     },
     easySearch: (data, typeOfEasySearch) => {
         let coincidences = []
@@ -409,7 +803,7 @@ let events = {
         
     },
     getAllOfDataAndShowCoincidences: async () => {
-        let promise = await fetch("https://misterrobot1010.github.io/assets/PGD_Base%20de%20datos_ORIGINAL.xlsx")
+        let promise = await fetch(URLOfExcelFile)
             .then(res => res.blob())
             .then(data => {
                 let fileReader = new FileReader()
@@ -423,7 +817,11 @@ let events = {
                         let url = new URL(window.location.href)
                         request = JSON.parse(url.searchParams.get("request"))
                         console.log(request)
+
+                        events.search(request.clauses)
+                        events.showResponseFromAllOfDataInText()
                         
+                        /*
                         if (request.type === "easy") {
                             events.easySearch(request.object.data, request.object.typeOfEasySearch)
                             events.showResponseFromAllOfDataInText()
@@ -432,6 +830,7 @@ let events = {
                             events.hardSearch(request.array)
                             events.showResponseFromAllOfDataInText()
                         }
+                        */
                     })
                 }
             })
@@ -452,7 +851,6 @@ document.getElementById("button").addEventListener("click", async () => {
     }
 })
 */
-
 document.querySelectorAll(".coincidences-container .backward-button")[0].addEventListener("click", () => {
     functions.updateBeginAndEndForRangeCoincidencesBackward()
     events.showResponseFromAllOfDataInText()
@@ -462,7 +860,6 @@ document.querySelectorAll(".coincidences-container .forward-button")[0].addEvent
     functions.updateBeginAndEndForRangeCoincidencesForward()
     events.showResponseFromAllOfDataInText()
 })
-
 /*
 document.querySelectorAll(".easy-search-container .exact")[0].addEventListener("click", () => {
     let data = document.querySelectorAll(".easy-search-container .easy-search-text")[0].value

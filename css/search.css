@@ -171,7 +171,7 @@ main {
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
 }
-.area-hard-texts .radio-hard-texts label:nth-of-type(3) {
+.area-hard-texts .radio-hard-texts label:nth-of-type(2) {
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }

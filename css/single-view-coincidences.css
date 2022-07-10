@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* background: rgb(0 100 0 / 5%) !important;
+    outline: 1px solid green; */
+}
+html {
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
+    font-family: 'Nunito', sans-serif;
+    scroll-behavior: smooth;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
+}
+main {
+    width: 100%;
+    min-height: 100vh;
+}
+.coincidences-container {
+    width: 100%;
+    padding: 1rem;
+}
