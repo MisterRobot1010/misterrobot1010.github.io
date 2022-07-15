@@ -812,7 +812,53 @@ let events = {
                     let data = event.target.result
                     let workbook = XLSX.read(data, {type: "binary"})
                     workbook.SheetNames.forEach(sheet => {
-                        allOfData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
+
+                        //allOfData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
+                        //I must put topic, subtopic and subject
+                        allOfData = []
+                        let propOfTopic
+                        let topic
+                        let subtopic
+                        let subject
+                        let amountOfColumnsForTopic
+
+                        XLSX.utils.sheet_to_json(workbook.Sheets[sheet]).forEach((object, index) => {
+
+                            amountOfColumnsForTopic = 0
+                            propOfTopic = null
+                            topic = null
+                            subtopic = null
+                            subject = null
+                            Object.getOwnPropertyNames(object).forEach(property => {
+                                if (functions.returnCorrectData(property).includes(functions.returnCorrectData(allOfConstants.separatorOfTopic))) {
+                                    propOfTopic = property
+                                    amountOfColumnsForTopic++
+                                }    
+                            })
+
+                            if (amountOfColumnsForTopic > 1) {
+                                console.log("Se encontraron 2 o más columnas para Tema. Se pondrá la última encontrada. El registro es el número: " + index)
+                            }
+
+                            if (propOfTopic) {
+                                topic = object[propOfTopic]
+                                subtopic = allOfFunctions.returnSubtopic(propOfTopic, topic)
+                                
+                                
+                                if (allOfFunctions.returnCorrectData(topic) === "docencia") {
+                                    if (object["Si el tema es docencia, indicar aquí la materia"]) {
+                                        subject = object["Si el tema es docencia, indicar aquí la materia"]
+                                    }
+                                }
+                            }
+
+                            object["Tema"] = topic
+                            object["Subtema"] = subtopic
+                            object["Materia"] = subject
+
+                            allOfData.push(object)
+                        })
+
                         console.log("Hecho")
                         let url = new URL(window.location.href)
                         request = JSON.parse(url.searchParams.get("request"))
