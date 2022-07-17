@@ -235,29 +235,69 @@ let events = {
                     actualColumn = "Código"
                     actualCondition = "similar"
                 }
-                else if (element.id.includes("title")) {
+                else if (element.id.includes("title") && !element.id.includes("(2)")) {
                     actualColumn = "Título"
                     actualCondition = events.getSelectionFromHardRdbtnForTexts("title")
                 }
-                else if (element.id.includes("author")) {
+                else if (element.id.includes("title(2)")) {
+                    actualColumn = "Título"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("title(2)")
+                }
+                else if (element.id.includes("author") && !element.id.includes("(2)")) {
                     actualColumn = "Autor"
                     actualCondition = events.getSelectionFromHardRdbtnForTexts("author")
                 }
-                else if (element.id.includes("place")) {
+                else if (element.id.includes("author(2)")) {
+                    actualColumn = "Autor"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("author(2)")
+                }
+                else if (element.id.includes("place") && !element.id.includes("(2)")) {
                     actualColumn = "Lugar"
                     actualCondition = events.getSelectionFromHardRdbtnForTexts("place")
                 }
-                else if (element.id.includes("topic")) {
-                    actualColumn = "Tema [2]"
+                else if (element.id.includes("place(2)")) {
+                    actualColumn = "Lugar"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("place(2)")
+                }
+                else if (element.id.includes("-topic") && !element.id.includes("(2)")) {
+                    actualColumn = "Tema"
                     actualCondition = events.getSelectionFromHardRdbtnForTexts("topic")
                 }
-                else if (element.id.includes("typedoc")) {
+                else if (element.id.includes("-topic(2)")) {
+                    actualColumn = "Tema"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("topic(2)")
+                }
+                else if (element.id.includes("-subtopic") && !element.id.includes("(2)")) {
+                    actualColumn = "Subtema"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("subtopic")
+                }
+                else if (element.id.includes("-subtopic(2)")) {
+                    actualColumn = "Subtema"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("subtopic(2)")
+                }
+                else if (element.id.includes("subject") && !element.id.includes("(2)")) {
+                    actualColumn = "Materia"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("subject")
+                }
+                else if (element.id.includes("subject(2)")) {
+                    actualColumn = "Materia"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("subject(2)")
+                }
+                else if (element.id.includes("typedoc") && !element.id.includes("(2)")) {
                     actualColumn = "Tipo de documento"
                     actualCondition = events.getSelectionFromHardRdbtnForTexts("typedoc")
                 }
-                else if (element.id.includes("sizedoc")) {
+                else if (element.id.includes("typedoc(2)")) {
+                    actualColumn = "Tipo de documento"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("typedoc(2)")
+                }
+                else if (element.id.includes("sizedoc") && !element.id.includes("(2)")) {
                     actualColumn = "Tamaño del documento"
                     actualCondition = events.getSelectionFromHardRdbtnForTexts("sizedoc")
+                }
+                else if (element.id.includes("sizedoc(2)")) {
+                    actualColumn = "Tamaño del documento"
+                    actualCondition = events.getSelectionFromHardRdbtnForTexts("sizedoc(2)")
                 }
 
                 if (!(actualCondition === "" || actualCondition === null)) {
@@ -388,73 +428,152 @@ let events = {
             <span>Código:</span>
             <input type="text" name="" id="hard-inputtext-code" class="hard-search-text" placeholder="Ej: D00001">
             <span>Título:</span>
-            <div class="area-hard-texts">
-                <input type="text" name="" id="hard-inputtext-title" class="hard-search-text" placeholder='Ej: Estética'>
-                <div class="radio-hard-texts">
-                    <input type="radio" name="rdbtn-hard-title" id="rdbtn-hard-title-exact" value="exact">
-                    <label for="rdbtn-hard-title-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="area-hard-texts area-hard-title">
+                <div class="area-hard-row">
+                    <input type="text" name="" id="hard-inputtext-title" class="hard-search-text" placeholder='Ej: Estética'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-title" id="rdbtn-hard-title-exact" value="exact">
+                        <label for="rdbtn-hard-title-exact"><i class="fa-solid fa-equals"></i></label>
 
-                    <input type="radio" name="rdbtn-hard-title" id="rdbtn-hard-title-not" value="not">
-                    <label for="rdbtn-hard-title-not"><i class="fa-solid fa-not-equal"></i></label>
+                        <input type="radio" name="rdbtn-hard-title" id="rdbtn-hard-title-not" value="not">
+                        <label for="rdbtn-hard-title-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-title">
+                </div>
+                <div class="area-hard-row">                
                 </div>
             </div>
             <span>Autor:</span>
-            <div class="area-hard-texts">
-                <input type="text" name="" id="hard-inputtext-author" class="hard-search-text" placeholder='Ej: Pedro Gómez Danés'>
-                <div class="radio-hard-texts">
-                    <input type="radio" name="rdbtn-hard-author" id="rdbtn-hard-author-exact" value="exact">
-                    <label for="rdbtn-hard-author-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="area-hard-texts area-hard-author">
+                <div class="area-hard-row">
+                    <input type="text" name="" id="hard-inputtext-author" class="hard-search-text" placeholder='Ej: Pedro Gómez Danés'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-author" id="rdbtn-hard-author-exact" value="exact">
+                        <label for="rdbtn-hard-author-exact"><i class="fa-solid fa-equals"></i></label>
 
-                    <input type="radio" name="rdbtn-hard-author" id="rdbtn-hard-author-not" value="not">
-                    <label for="rdbtn-hard-author-not"><i class="fa-solid fa-not-equal"></i></label>
+                        <input type="radio" name="rdbtn-hard-author" id="rdbtn-hard-author-not" value="not">
+                        <label for="rdbtn-hard-author-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-author">
+                </div>
+                <div class="area-hard-row">                
                 </div>
             </div>
             <span>Lugar:</span>
-            <div class="area-hard-texts">
-                <input type="text" name="" id="hard-inputtext-place" class="hard-search-text" placeholder='Ej: Monterrey, Nuevo León'>
-                <div class="radio-hard-texts">
-                    <input type="radio" name="rdbtn-hard-place" id="rdbtn-hard-place-exact" value="exact">
-                    <label for="rdbtn-hard-place-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="area-hard-texts area-hard-place">
+                <div class="area-hard-row">
+                    <input type="text" name="" id="hard-inputtext-place" class="hard-search-text" placeholder='Ej: Monterrey, Nuevo León'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-place" id="rdbtn-hard-place-exact" value="exact">
+                        <label for="rdbtn-hard-place-exact"><i class="fa-solid fa-equals"></i></label>
 
-                    <input type="radio" name="rdbtn-hard-place" id="rdbtn-hard-place-not" value="not">
-                    <label for="rdbtn-hard-place-not"><i class="fa-solid fa-not-equal"></i></label>
+                        <input type="radio" name="rdbtn-hard-place" id="rdbtn-hard-place-not" value="not">
+                        <label for="rdbtn-hard-place-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-place">
+                </div>
+                <div class="area-hard-row">                
                 </div>
             </div>
             <span>Tema:</span>
-            <div class="area-hard-texts">
-                <input type="text" name="" id="hard-inputtext-topic" class="hard-search-text" placeholder='Ej: Filosofía'>
-                <div class="radio-hard-texts">
-                    <input type="radio" name="rdbtn-hard-topic" id="rdbtn-hard-topic-exact" value="exact">
-                    <label for="rdbtn-hard-topic-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="area-hard-texts area-hard-topic">
+                <div class="area-hard-row">
+                    <input type="text" name="" id="hard-inputtext-topic" class="hard-search-text" placeholder='Ej: Docencia'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-topic" id="rdbtn-hard-topic-exact" value="exact">
+                        <label for="rdbtn-hard-topic-exact"><i class="fa-solid fa-equals"></i></label>
 
-                    <input type="radio" name="rdbtn-hard-topic" id="rdbtn-hard-topic-not" value="not">
-                    <label for="rdbtn-hard-topic-not"><i class="fa-solid fa-not-equal"></i></label>
+                        <input type="radio" name="rdbtn-hard-topic" id="rdbtn-hard-topic-not" value="not">
+                        <label for="rdbtn-hard-topic-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-topic">
+                </div>
+                <div class="area-hard-row">                
+                </div>
+            </div>
+            <span>Subtema:</span>
+            <div class="area-hard-texts area-hard-subtopic">
+                <div class="area-hard-row">
+                    <input type="text" name="" id="hard-inputtext-subtopic" class="hard-search-text" placeholder='Ej: Trabajo Escolar'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-subtopic" id="rdbtn-hard-subtopic-exact" value="exact">
+                        <label for="rdbtn-hard-subtopic-exact"><i class="fa-solid fa-equals"></i></label>
+
+                        <input type="radio" name="rdbtn-hard-subtopic" id="rdbtn-hard-subtopic-not" value="not">
+                        <label for="rdbtn-hard-subtopic-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-subtopic">
+                </div>
+                <div class="area-hard-row">                
+                </div>
+            </div>
+            <span>Materia:</span>
+            <div class="area-hard-texts area-hard-subject">
+                <div class="area-hard-row">
+                    <input type="text" name="" id="hard-inputtext-subject" class="hard-search-text" placeholder='Ej: Estética'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-subject" id="rdbtn-hard-subject-exact" value="exact">
+                        <label for="rdbtn-hard-subject-exact"><i class="fa-solid fa-equals"></i></label>
+
+                        <input type="radio" name="rdbtn-hard-subject" id="rdbtn-hard-subject-not" value="not">
+                        <label for="rdbtn-hard-subject-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-subject">
+                </div>
+                <div class="area-hard-row">                
                 </div>
             </div>
             <span>Tipo de documento:</span>
-            <div class="area-hard-texts">
-                <input type="text" name="" id="hard-inputtext-typedoc" class="hard-search-text" placeholder='Ej: Mecanoescrito'>
-                <div class="radio-hard-texts">
-                    <input type="radio" name="rdbtn-hard-typedoc" id="rdbtn-hard-typedoc-exact" value="exact">
-                    <label for="rdbtn-hard-typedoc-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="area-hard-texts area-hard-typedoc">
+                <div class="area-hard-row">
+                    <input type="text" name="" id="hard-inputtext-typedoc" class="hard-search-text" placeholder='Ej: Mecanoescrito'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-typedoc" id="rdbtn-hard-typedoc-exact" value="exact">
+                        <label for="rdbtn-hard-typedoc-exact"><i class="fa-solid fa-equals"></i></label>
 
-                    <input type="radio" name="rdbtn-hard-typedoc" id="rdbtn-hard-typedoc-not" value="not">
-                    <label for="rdbtn-hard-typedoc-not"><i class="fa-solid fa-not-equal"></i></label>
+                        <input type="radio" name="rdbtn-hard-typedoc" id="rdbtn-hard-typedoc-not" value="not">
+                        <label for="rdbtn-hard-typedoc-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-typedoc">
+                </div>
+                <div class="area-hard-row">                
                 </div>
             </div>
 
             <span>Tamaño del documento:</span>
-            <div class="area-hard-texts">
-                <input type="text" name="" id="hard-inputtext-sizedoc" class="hard-search-text" placeholder='Ej: Carta, Oficio, etc.'>
-                <div class="radio-hard-texts">
-                    <input type="radio" name="rdbtn-hard-sizedoc" id="rdbtn-hard-sizedoc-exact" value="exact">
-                    <label for="rdbtn-hard-sizedoc-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="area-hard-texts area-hard-sizedoc">
+                <div class="area-hard-row">
+                    <input type="text" name="" id="hard-inputtext-sizedoc" class="hard-search-text" placeholder='Ej: Carta, Oficio, etc.'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-sizedoc" id="rdbtn-hard-sizedoc-exact" value="exact">
+                        <label for="rdbtn-hard-sizedoc-exact"><i class="fa-solid fa-equals"></i></label>
 
-                    <input type="radio" name="rdbtn-hard-sizedoc" id="rdbtn-hard-sizedoc-not" value="not">
-                    <label for="rdbtn-hard-sizedoc-not"><i class="fa-solid fa-not-equal"></i></label>
+                        <input type="radio" name="rdbtn-hard-sizedoc" id="rdbtn-hard-sizedoc-not" value="not">
+                        <label for="rdbtn-hard-sizedoc-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-sizedoc">
+                </div>
+                <div class="area-hard-row">                
                 </div>
             </div>
             <input type="button" value="Buscar" id="hard-search-button">
+            <input type="button" value="Editar" id="hard-search-edit">
         `
         let container = document.querySelectorAll(".area-menu .menu .container")[0]
         container.innerHTML = content
@@ -470,6 +589,56 @@ let events = {
 
             location.href = "./coincidences.html?request=" + (JSON.stringify(request))
         })
+
+        document.getElementById("hard-search-edit").addEventListener("click", () => {
+            document.querySelectorAll(".area-hard-texts .area-hard-row:nth-child(2)").forEach(element => {
+                //console.log(element.style.display)
+
+                if (!element.style.display || element.style.display === "none") {
+                    element.style.display = "flex"
+                }
+                else if (element.style.display) {
+                    element.style.display = "none"
+                }
+
+            })
+        })
+
+        document.querySelectorAll(".hard-more-button").forEach(element => {
+            //Esto solo es una prueba individual
+
+            element.addEventListener("click", evt => {
+                console.log(evt.target.id)
+                let column = evt.target.id.split("-")[3]
+
+                console.log(column)
+
+                //document.querySelector(".area-hard-" + column).children[2]
+                let content = `
+                    <input type="text" name="" id="hard-inputtext-${column}(2)" class="hard-search-text" placeholder='${""}'>
+                    <div class="radio-hard-texts">
+                        <input type="radio" name="rdbtn-hard-${column}(2)" id="rdbtn-hard-${column}(2)-exact" value="exact">
+                        <label for="rdbtn-hard-${column}(2)-exact"><i class="fa-solid fa-equals"></i></label>
+
+                        <input type="radio" name="rdbtn-hard-${column}(2)" id="rdbtn-hard-${column}(2)-not" value="not">
+                        <label for="rdbtn-hard-${column}(2)-not"><i class="fa-solid fa-not-equal"></i></label>
+                    </div>
+                `
+                document.querySelector(".area-hard-" + column).children[2].innerHTML = content
+
+                let rdbtn = document.getElementsByName("rdbtn-hard-" + (column) + "(2)")
+
+                rdbtn.forEach(rdbtn => {
+                    if (rdbtn.id.includes("exact")) {
+                        rdbtn.click()
+                    }
+                })
+
+                element.style.display = "none"
+            })
+        })
+
+
     },
     showComponentsEasyOrHardSearch: () => {
         let selectedSpan = document.querySelector(".area-menu .menu .header .selected")

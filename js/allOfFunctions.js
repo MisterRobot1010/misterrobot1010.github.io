@@ -96,5 +96,5 @@ const allOfFunctions = {
         })
 
         return subtopic
-    }
+    },
 }

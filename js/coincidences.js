@@ -360,12 +360,20 @@ let events = {
                         </div>
                         <div class="topic">
                             <span class="text-column">Tema:&nbsp;</span>
-                            <span class="text-info">${element["Tema [2]"]}</span>
+                            <span class="text-info">${element["Tema"]}</span>
                         </div>
                         <div class="subtopic">
                             <span class="text-column">Subtema:&nbsp;</span>
-                            <span class="text-info">${element["Si el tema es docencia, indicar aquí la materia"]}</span>
+                            <span class="text-info">${element["Subtema"]}</span>
                         </div>
+                        ${(element["Si el tema es docencia, indicar aquí la materia"]) ? 
+                            `<div class="subtopic">
+                                <span class="text-column">Materia:&nbsp;</span>
+                                <span class="text-info">${element["Si el tema es docencia, indicar aquí la materia"]}</span>
+                            </div>`
+                            :
+                            ``
+                        }
                     </div>
                 </div>
             `
@@ -533,7 +541,7 @@ let events = {
         let someWordInTrue = false
 
         if (column === "All(string)") {
-            columnsForSearch = columns
+            columnsForSearch = allOfConstants.columns
         }
         else {
             columnsForSearch = []
@@ -543,7 +551,7 @@ let events = {
         let statesOfEqualities = []
 
         //Para retornar este record, todas las equalities me tienen que devolver true
-        //Caso especial: Si hay 3 o más "palabras solamente", retorna true automaticamente
+        //Caso especial: Si hay 3 o más "palabras solamente", retorna true automaticamente (Error)
 
         equalities.forEach(eq => {
             stateOfActualEquality = false
@@ -589,9 +597,35 @@ let events = {
                 statesOfEqualities.push(false)
             }
         })
+
+        if (statesOfEqualities.includes(true) && statesOfEqualities.includes(false)) {
+            console.log(statesOfEqualities)
+            console.log(equalities)
+            console.log(record)
+        }
         
+        //Verifica este algoritmo despues
+        //Te ayudará a detectar errores
         if (((counterOfJustWords >= 3) && (someWordInTrue)) || (!statesOfEqualities.includes(false))) {
             return true
+        }
+        //Caso especial para los que son "different"
+        else if (statesOfEqualities.includes(true) && statesOfEqualities.includes(false)) {
+            //Si todos son different
+            let eqDiff = 0
+            for (let i = 0; i < equalities.length; i++) {
+                if (equalities[i].comparison === "different") {
+                    eqDiff++
+                }
+            }
+
+            if (eqDiff === equalities.length) {
+                equalities.forEach((eq, index) => {
+                    if (statesOfEqualities[index] === true) {
+                        return true
+                    }
+                })
+            }
         }
         else {
             return false
