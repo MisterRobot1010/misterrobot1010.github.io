@@ -34,7 +34,7 @@ body{
 .coincidences-container {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    /* padding: 2rem; */
     border: 0.1rem black solid;
     overflow: hidden;
     margin: 2rem;
@@ -104,13 +104,27 @@ body{
     display: flex;
     font-size: 1.5rem;
     flex-direction: row;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: center;
     align-items: center;
     min-height: 5vh;
 }
+.coincidences-container .control-coincidences .menu-control-coincidences {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    background-color: black;
+    color: white;
+}
+.coincidences-container .control-coincidences .menu-control-coincidences-item {
+    width: 11.11%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .coincidences-container .control-coincidences > * {
-    margin: 0.5rem;
+    /* margin: 0.5rem; */
 }
 .coincidences-container .control-coincidences .numbers-of-pages {
     width: 10vw;
@@ -125,5 +139,5 @@ body{
     margin: .5rem;
 }
 .coincidences-container .amount-coincidences{
-    padding: 0rem 2rem;
+    padding: 2rem 2rem;
 }

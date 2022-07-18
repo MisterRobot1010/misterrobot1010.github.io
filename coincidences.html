@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="./js/allOfConstants.js"></script>
     <script src="./js/allOfFunctions.js"></script>
+    <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
 </head>
 <body>
     <div class="main-container">
@@ -19,18 +20,49 @@
             <div class="coincidences" id="all-of-coincidences">
             </div>
             <div class="control-coincidences">
-                <input type="button" value="Anterior" class="backward-button">
+                <!-- <input type="button" value="Anterior" class="backward-button">
                 <div class="numbers-of-pages"></div>
-                <input type="button" value="Siguiente" class="forward-button">
-                <!-- <a href="">Anterior</a>
-                <a href="">1</a>
-                <span>...</span>
-                <a href="">5</a>
-                <a href="">6</a>
-                <a href="">7</a>
-                <span>...</span>
-                <a href="">10</a>
-                <a href="">Siguiente</a> -->
+                <input type="button" value="Siguiente" class="forward-button"> -->
+                <!-- <a href="" class="backward-button"><</a>
+                <div class="numbers-of-pages">
+                    <a href="" class="page">1</a>
+                    <span class="page">...</span>
+                    <a href="" class="page">5</a>
+                    <a href="" class="page">6</a>
+                    <a href="" class="page">7</a>
+                    <span class="page">...</span>
+                    <a href="" class="page">10</a>
+                </div>
+                <a href="" class="forward-button">></a> -->
+                <div class="menu-control-coincidences">
+                    <div class="menu-control-coincidences-item ">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </div>
+                    <div class="menu-control-coincidences-item ">
+                        <span>1</span>
+                    </div>
+                    <div class="menu-control-coincidences-item">
+                        <span>...</span>
+                    </div>
+                    <div class="menu-control-coincidences-item">
+                        <span>3</span>
+                    </div>
+                    <div class="menu-control-coincidences-item">
+                        <span>4</span>
+                    </div>
+                    <div class="menu-control-coincidences-item">
+                        <span>5</span>
+                    </div>
+                    <div class="menu-control-coincidences-item">
+                        <span>...</span>
+                    </div>
+                    <div class="menu-control-coincidences-item">
+                        <span>10</span>
+                    </div>
+                    <div class="menu-control-coincidences-item">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
+                </div>
             </div>
             <div class="amount-coincidences">
                 <span class="content"></span>

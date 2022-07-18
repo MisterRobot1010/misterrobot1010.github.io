@@ -4,11 +4,22 @@ let allOfData = []
 let responseFromAllOfData
 let rangeForShowCoincidences = {
     amountOfElements: 10, //Amount for show by page   
-    begin: 0,
-    end: null,
+    begin: 0, //Access to position in array
+    end: null, //Access to position in array
     showButtonForward: null,
     showButtonBackward: null,
-    numberOfPages: null
+    numberOfPages: null,
+
+    //For menu-control-coincidences-item
+    coincidencesPagination: {
+        firstPage: null,
+
+        previousPage: null,
+        actualPage: null,
+        nextPage: null,
+
+        lastPage: null,
+    }
 }
 let responseFromAllOfDataInText = []
 let columns = ["Autor", "Carpeta", "Código", "Fecha dd/mm/aaaa", "Lugar", "Marca temporal", "Observaciones", "Otros [Firma]", "Otros [Notas]", "Otros [Subrayado]", "Si el tema es docencia, indicar aquí la materia", "Tamaño del documento", "Tema [2]", "Tema: Filosofía [Filosofía]", "Tipo de documento", "Título"]
@@ -16,6 +27,101 @@ let columns = ["Autor", "Carpeta", "Código", "Fecha dd/mm/aaaa", "Lugar", "Marc
 let functions = {
     removeAccents: (str) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    },
+    setPaginationOfCoincidences: (actualPage) => {
+        rangeForShowCoincidences.numberOfPages
+        //actualPage begins from 1 to infinite
+
+        //Easy: 1
+        // rangeForShowCoincidences = {
+        //     ...rangeForShowCoincidences,
+        //     coincidencesPagination: {
+        //         ...rangeForShowCoincidences.coincidencesPagination,
+
+        //     }
+        // }
+        rangeForShowCoincidences = {
+            ...rangeForShowCoincidences,
+            coincidencesPagination: {
+                ...rangeForShowCoincidences.coincidencesPagination,
+                actualPage: actualPage       
+            }
+        }
+
+        //set previous and next page
+        if ((actualPage - 1) > 0) {
+            rangeForShowCoincidences = {
+                ...rangeForShowCoincidences,
+                coincidencesPagination: {
+                    ...rangeForShowCoincidences.coincidencesPagination,
+                    previousPage: actualPage - 1
+                }
+            }
+        }
+        else {
+            rangeForShowCoincidences = {
+                ...rangeForShowCoincidences,
+                coincidencesPagination: {
+                    ...rangeForShowCoincidences.coincidencesPagination,
+                    previousPage: null
+                }
+            }
+        }
+
+        if ((actualPage + 1) <= rangeForShowCoincidences.numberOfPages) {
+            rangeForShowCoincidences = {
+                ...rangeForShowCoincidences,
+                coincidencesPagination: {
+                    ...rangeForShowCoincidences.coincidencesPagination,
+                    nextPage: actualPage + 1
+                }
+            }
+        }
+        else {
+            rangeForShowCoincidences = {
+                ...rangeForShowCoincidences,
+                coincidencesPagination: {
+                    ...rangeForShowCoincidences.coincidencesPagination,
+                    nextPage: null
+                }
+            }
+        }
+
+        //set first and last page
+        //aqui me quede
+        if (rangeForShowCoincidences.coincidencesPagination.previousPage !== null) {
+
+            if (rangeForShowCoincidences.coincidencesPagination.previousPage === 1) {
+                rangeForShowCoincidences = {
+                    ...rangeForShowCoincidences,
+                    coincidencesPagination: {
+                        ...rangeForShowCoincidences.coincidencesPagination,
+                        firstPage: null
+                    }
+                }
+            }
+            else {
+                rangeForShowCoincidences = {
+                    ...rangeForShowCoincidences,
+                    coincidencesPagination: {
+                        ...rangeForShowCoincidences.coincidencesPagination,
+                        firstPage: 1
+                    }
+                }
+            }
+
+        }
+        else {
+            rangeForShowCoincidences = {
+                ...rangeForShowCoincidences,
+                coincidencesPagination: {
+                    ...rangeForShowCoincidences.coincidencesPagination,
+                    firstPage: null
+                }
+            }
+        }
+
+
     },
     setForRangeCoincidencesInitial: () => {
         rangeForShowCoincidences = {
@@ -38,6 +144,7 @@ let functions = {
             showButtonBackward: false
         }
 
+        //show coincidencesPagination
         //showButtonForward
         //Detect if we are in the finish
         //So, I cannot advance after
