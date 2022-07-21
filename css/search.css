@@ -105,38 +105,40 @@ main {
     width: 90%;
     align-self: center;
     padding: 1rem;
-    background-color: white;
-    border: .2rem solid #27ae60;
-    color: #27ae60;
+    background-color: #27ae60;
+    /* border: .2rem solid #27ae60; */
+    border: none;
+    color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
     transition: .5s;
     cursor: pointer;
 }
-.menu .container #easy-search-button:hover {
+/* .menu .container #easy-search-button:hover {
     background-color: #27ae60;
     border-color: #27ae60;
     color: white;
-}
+} */
 .menu .container #hard-search-button {
     margin: 1rem 0;
     outline: none;
     width: 90%;
     align-self: center;
     padding: 1rem;
-    background-color: white;
-    border: .2rem solid #27ae60;
-    color: #27ae60;
+    background-color: #27ae60;
+    /* border: .2rem solid #27ae60; */
+    border: none;
+    color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
     transition: .5s;
     cursor: pointer;
 }
-.menu .container #hard-search-button:hover {
+/* .menu .container #hard-search-button:hover {
     background-color: #27ae60;
     border-color: #27ae60;
     color: white;
-}
+} */
 .menu .container .hard-more-button {
     outline: none;
     width: 20%;
@@ -162,13 +164,19 @@ main {
     width: 90%;
     align-self: center;
     padding: 1rem;
-    background-color: #27ae60;
-    border: none;
-    color: white;
+    background-color: white;
+    border: .2rem solid #27ae60;
+    /* border: none; */
+    color: #27ae60;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
     transition: .5s;
     cursor: pointer;
+}
+.menu .container #hard-search-edit:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+    color: white;
 }
 .container .separator {
     width: 100%;

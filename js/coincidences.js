@@ -29,7 +29,7 @@ let functions = {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     },
     setPaginationOfCoincidences: (actualPage) => {
-        rangeForShowCoincidences.numberOfPages
+        //rangeForShowCoincidences.numberOfPages = null
         //actualPage begins from 1 to infinite
 
         //Easy: 1
@@ -88,7 +88,6 @@ let functions = {
         }
 
         //set first and last page
-        //aqui me quede
         if (rangeForShowCoincidences.coincidencesPagination.previousPage !== null) {
 
             if (rangeForShowCoincidences.coincidencesPagination.previousPage === 1) {
@@ -121,7 +120,229 @@ let functions = {
             }
         }
 
+        if (rangeForShowCoincidences.coincidencesPagination.nextPage !== null) {
+            if (rangeForShowCoincidences.coincidencesPagination.nextPage === rangeForShowCoincidences.numberOfPages) {
+                rangeForShowCoincidences = {
+                    ...rangeForShowCoincidences,
+                    coincidencesPagination: {
+                        ...rangeForShowCoincidences.coincidencesPagination,
+                        lastPage: null
+                    }
+                }
+            }
+            else {
+                rangeForShowCoincidences = {
+                    ...rangeForShowCoincidences,
+                    coincidencesPagination: {
+                        ...rangeForShowCoincidences.coincidencesPagination,
+                        lastPage: rangeForShowCoincidences.numberOfPages
+                    }
+                }
+            }
+        }
+        else {
+            rangeForShowCoincidences = {
+                ...rangeForShowCoincidences,
+                coincidencesPagination: {
+                    ...rangeForShowCoincidences.coincidencesPagination,
+                    lastPage: null
+                }
+            }
+        }
 
+        let content = ``
+
+        if (rangeForShowCoincidences.showButtonBackward) {
+            content += `
+                <div class="menu-control-coincidences-item touchable available">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+            `
+        }
+        else {
+            content += `
+                <div class="menu-control-coincidences-item">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+            `
+        }
+
+        
+        if (rangeForShowCoincidences.coincidencesPagination.firstPage !== null) {
+            content += `
+                <div class="menu-control-coincidences-item touchable">
+                    <span>${rangeForShowCoincidences.coincidencesPagination.firstPage}</span>
+                </div>
+            `
+        }
+
+        if ((rangeForShowCoincidences.coincidencesPagination.previousPage !== null) && (rangeForShowCoincidences.coincidencesPagination.firstPage !== null)) {
+            if ((rangeForShowCoincidences.coincidencesPagination.previousPage - rangeForShowCoincidences.coincidencesPagination.firstPage) > 1) {
+                content += `
+                    <div class="menu-control-coincidences-item">
+                        <span>...</span>
+                    </div>
+                `
+            }
+        }
+
+        if (rangeForShowCoincidences.coincidencesPagination.previousPage !== null) {
+            content += `
+                <div class="menu-control-coincidences-item touchable">
+                    <span>${rangeForShowCoincidences.coincidencesPagination.previousPage}</span>
+                </div>
+            `
+        }
+
+        content += `
+            <div class="menu-control-coincidences-item selected touchable">
+                <span>${rangeForShowCoincidences.coincidencesPagination.actualPage}</span>
+            </div>
+        `
+
+        if (rangeForShowCoincidences.coincidencesPagination.nextPage !== null) {
+            content += `
+                <div class="menu-control-coincidences-item touchable">
+                    <span>${rangeForShowCoincidences.coincidencesPagination.nextPage}</span>
+                </div>
+            `
+        }
+
+        if ((rangeForShowCoincidences.coincidencesPagination.nextPage !== null) && (rangeForShowCoincidences.coincidencesPagination.lastPage !== null)) {
+            if ((rangeForShowCoincidences.coincidencesPagination.lastPage - rangeForShowCoincidences.coincidencesPagination.nextPage) > 1) {
+                content += `
+                    <div class="menu-control-coincidences-item">
+                        <span>...</span>
+                    </div>
+                `
+            }
+        }
+
+        if (rangeForShowCoincidences.coincidencesPagination.lastPage !== null) {
+            content += `
+                <div class="menu-control-coincidences-item touchable">
+                    <span>${rangeForShowCoincidences.coincidencesPagination.lastPage}</span>
+                </div>
+            `
+        }
+
+        if (rangeForShowCoincidences.showButtonForward) {
+            content += `
+                <div class="menu-control-coincidences-item touchable available">
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
+            `
+        }
+        else {
+            content += `
+                <div class="menu-control-coincidences-item">
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
+            `
+        }
+
+        document.querySelector(".control-coincidences .menu-control-coincidences").innerHTML = content
+
+        //Events
+        //Button backward and forward
+        
+    
+    
+        document.querySelector(".control-coincidences .menu-control-coincidences .menu-control-coincidences-item:first-child").addEventListener("click", () => {
+            if (rangeForShowCoincidences.showButtonBackward) {
+                functions.updateBeginAndEndForRangeCoincidencesBackward()
+                events.showResponseFromAllOfDataInText()
+            }
+        })
+        document.querySelector(".control-coincidences .menu-control-coincidences .menu-control-coincidences-item:last-child").addEventListener("click", () => {
+            if (rangeForShowCoincidences.showButtonForward) {
+                functions.updateBeginAndEndForRangeCoincidencesForward()
+                events.showResponseFromAllOfDataInText()
+            }
+        })
+        document.querySelectorAll(".control-coincidences .menu-control-coincidences .menu-control-coincidences-item.touchable:not(:first-child):not(:last-child)").forEach(element => {
+            element.addEventListener("click", (e) => {
+
+                let selectedPage
+
+                if (e.path[0].tagName.toLowerCase() === "span") {
+                    selectedPage = parseInt(e.target.innerHTML)
+                }
+                else {
+                    selectedPage = parseInt(e.path[0].children[0].innerHTML)
+                }
+
+                console.log(selectedPage)
+
+                //Modify rangeForShowCoincidences.begin
+                selectedPage -= 1
+                rangeForShowCoincidences = {
+                    ...rangeForShowCoincidences,
+                    begin: (selectedPage) * (rangeForShowCoincidences.amountOfElements)
+                }
+                
+                //Modify rangeForShowCoincidences.end
+                selectedPage += 1
+                
+                if (selectedPage == rangeForShowCoincidences.numberOfPages) {
+                    rangeForShowCoincidences = {
+                        ...rangeForShowCoincidences,
+                        end: responseFromAllOfDataInText.length - 1
+                    }
+                }
+                else {
+                    rangeForShowCoincidences = {
+                        ...rangeForShowCoincidences,
+                        end: rangeForShowCoincidences.begin + (rangeForShowCoincidences.amountOfElements - 1)
+                    }
+                }
+
+                functions.justUpdateBeginAndEnd()
+                functions.setPaginationOfCoincidences(selectedPage)
+                events.showResponseFromAllOfDataInText()
+                
+            })
+        })
+
+
+        /* 
+        document.querySelectorAll(".control-coincidences .numbers-of-pages .page").forEach(element => {
+            element.addEventListener("click", (e) => {
+                e.preventDefault()
+
+                let selectedPage = parseInt(e.target.innerHTML)
+
+                console.log(selectedPage)
+                
+                //Modify rangeForShowCoincidences.begin
+                selectedPage -= 1
+                rangeForShowCoincidences = {
+                    ...rangeForShowCoincidences,
+                    begin: (selectedPage) * (rangeForShowCoincidences.amountOfElements)
+                }
+                
+                //Modify rangeForShowCoincidences.end
+                selectedPage += 1
+                
+                if (selectedPage == rangeForShowCoincidences.numberOfPages) {
+                    rangeForShowCoincidences = {
+                        ...rangeForShowCoincidences,
+                        end: responseFromAllOfDataInText.length - 1
+                    }
+                }
+                else {
+                    rangeForShowCoincidences = {
+                        ...rangeForShowCoincidences,
+                        end: rangeForShowCoincidences.begin + (rangeForShowCoincidences.amountOfElements - 1)
+                    }
+                }
+
+                functions.justUpdateBeginAndEnd()
+                events.showResponseFromAllOfDataInText()
+                
+            })            
+        })
+        */
     },
     setForRangeCoincidencesInitial: () => {
         rangeForShowCoincidences = {
@@ -160,6 +381,8 @@ let functions = {
                 showButtonForward: true
             }
         }
+
+        functions.setPaginationOfCoincidences(1)
     },
     updateBeginAndEndForRangeCoincidencesForward: () => {
         let end = rangeForShowCoincidences.end + (rangeForShowCoincidences.amountOfElements)
@@ -183,6 +406,8 @@ let functions = {
                 showButtonForward: false
             }
         }
+
+        functions.setPaginationOfCoincidences(rangeForShowCoincidences.coincidencesPagination.actualPage + 1)
     },
     updateBeginAndEndForRangeCoincidencesBackward: () => {
         let end = rangeForShowCoincidences.begin - 1
@@ -202,6 +427,8 @@ let functions = {
                 showButtonBackward: false
             }
         }
+
+        functions.setPaginationOfCoincidences(rangeForShowCoincidences.coincidencesPagination.actualPage - 1)
     },
     justUpdateBeginAndEnd: () => {
         //Forward
@@ -364,78 +591,6 @@ let events = {
             })
         })
 
-        //Buttons y numOfPages
-        let controlCoincidencesCointainer = document.querySelectorAll(".coincidences-container .control-coincidences")[0]
-        controlCoincidencesCointainer.style.display = "flex"
-        console.log(controlCoincidencesCointainer)
-
-        let buttonForward = document.querySelectorAll(".coincidences-container .forward-button")[0]
-        let buttonBackward = document.querySelectorAll(".coincidences-container .backward-button")[0]
-        let listOfNumbersOfPages = document.querySelectorAll(".coincidences-container .numbers-of-pages")[0]
-
-        if (rangeForShowCoincidences.showButtonBackward) {
-            buttonBackward.style.display = "flex"
-        }
-        else {
-            buttonBackward.style.display = "none"
-        }
-
-        if (rangeForShowCoincidences.showButtonForward) {
-            buttonForward.style.display = "flex"
-        }
-        else {
-            buttonForward.style.display = "none"
-        }
-
-        
-        let allPages = ""
-        for (let i = 1; i <= rangeForShowCoincidences.numberOfPages; i++) {
-
-            allPages += `
-                <a class="page" href="#">${i}</a>
-            `
-             
-        }
-
-        listOfNumbersOfPages.innerHTML = allPages
-
-        document.querySelectorAll(".control-coincidences .numbers-of-pages .page").forEach(element => {
-            element.addEventListener("click", (e) => {
-                e.preventDefault()
-
-                let selectedPage = parseInt(e.target.innerHTML)
-
-                console.log(selectedPage)
-                
-                //Modify rangeForShowCoincidences.begin
-                selectedPage -= 1
-                rangeForShowCoincidences = {
-                    ...rangeForShowCoincidences,
-                    begin: (selectedPage) * (rangeForShowCoincidences.amountOfElements)
-                }
-                
-                //Modify rangeForShowCoincidences.end
-                selectedPage += 1
-                
-                if (selectedPage == rangeForShowCoincidences.numberOfPages) {
-                    rangeForShowCoincidences = {
-                        ...rangeForShowCoincidences,
-                        end: responseFromAllOfDataInText.length - 1
-                    }
-                }
-                else {
-                    rangeForShowCoincidences = {
-                        ...rangeForShowCoincidences,
-                        end: rangeForShowCoincidences.begin + (rangeForShowCoincidences.amountOfElements - 1)
-                    }
-                }
-
-                functions.justUpdateBeginAndEnd()
-                events.showResponseFromAllOfDataInText()
-                
-            })            
-        })
-
         document.querySelectorAll(".coincidences-container .amount-coincidences .content").forEach(containerOfAmount => {
             containerOfAmount.innerHTML = (responseFromAllOfDataInText.length === 0 ? "Mostrando 0 - 0 de 0 resultados." : "Mostrando " + (rangeForShowCoincidences.begin + 1) + " - " + (rangeForShowCoincidences.end + 1) + " de " + (responseFromAllOfDataInText.length) + (responseFromAllOfDataInText.length === 1 ? " resultado" : " resultados"))
         })
@@ -455,7 +610,7 @@ let events = {
                     </div>
                     <div class="info-container">
                         <div class="title">
-                            <span>Título: ${element["Título"]}</span>
+                            <span><span style="font-weight: normal; color: gray;">Título:</span> ${element["Título"]}</span>
                         </div>
                         <div class="code">
                             <span class="text-column">Código:&nbsp;</span>
@@ -1038,15 +1193,7 @@ document.getElementById("button").addEventListener("click", async () => {
     }
 })
 */
-document.querySelectorAll(".coincidences-container .backward-button")[0].addEventListener("click", () => {
-    functions.updateBeginAndEndForRangeCoincidencesBackward()
-    events.showResponseFromAllOfDataInText()
-})
 
-document.querySelectorAll(".coincidences-container .forward-button")[0].addEventListener("click", () => {
-    functions.updateBeginAndEndForRangeCoincidencesForward()
-    events.showResponseFromAllOfDataInText()
-})
 /*
 document.querySelectorAll(".easy-search-container .exact")[0].addEventListener("click", () => {
     let data = document.querySelectorAll(".easy-search-container .easy-search-text")[0].value

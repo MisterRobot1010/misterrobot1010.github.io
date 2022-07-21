@@ -18,7 +18,7 @@ let events = {
             allOfConstants.columns.forEach(col => {
                 actualDiv = null
 
-                if (/*responseFromAllOfData[0][col]*/true) {
+                if (responseFromAllOfData[0][col]) {
                     actualDiv = `
                         <div>
                             <b>${col}:&nbsp;</b>
@@ -34,6 +34,7 @@ let events = {
 
             content = `
                 <span>Información del registro</span>
+                <br>
                 <br>
                 ${contentOfDivs}
             `

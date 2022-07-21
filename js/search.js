@@ -572,8 +572,8 @@ let events = {
                 <div class="area-hard-row">                
                 </div>
             </div>
-            <input type="button" value="Buscar" id="hard-search-button">
             <input type="button" value="Editar" id="hard-search-edit">
+            <input type="button" value="Buscar" id="hard-search-button">
         `
         let container = document.querySelectorAll(".area-menu .menu .container")[0]
         container.innerHTML = content
