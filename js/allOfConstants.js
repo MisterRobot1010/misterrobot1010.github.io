@@ -24,5 +24,6 @@ const allOfConstants = {
             subtopics: ["Cartas", "Cocina", "Documentos", "Estudios", "Otros", "Botánica", "Arte", "Cronista"]
         }
     ],
-    columns: ["Autor", "Carpeta", "Código", "Fecha dd/mm/aaaa", "Lugar", "Marca temporal", "Observaciones", "Otros [Firma]", "Otros [Notas]", "Otros [Subrayado]", "Si el tema es docencia, indicar aquí la materia", "Tamaño del documento", "Tema: Filosofía [Filosofía]", "Tipo de documento", "Título", "Tema", "Subtema", "Materia"]
+    columns: ["Autor", "Carpeta", "Código", "Fecha dd/mm/aaaa", "Lugar", "Marca temporal", "Observaciones", "Otros [Firma]", "Otros [Notas]", "Otros [Subrayado]", "Si el tema es docencia, indicar aquí la materia", "Tamaño del documento", "Tema: Filosofía [Filosofía]", "Tipo de documento", "Título", "Tema", "Subtema", "Materia"],
+    omittedWordsInSearch: ["de", "del", "la", "el", "para", "por", "un", "unos", "unas", "una", "o", "a", "y", "pero", "uno"]
 }

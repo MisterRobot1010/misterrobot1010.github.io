@@ -5,6 +5,15 @@ let responseFromAllOfDataInText = []
 let URLOfExcelFile = "https://misterrobot1010.github.io/assets/PGD_Base%20de%20datos_ORIGINAL.xlsx"
 let columns = ["Autor", "Carpeta", "Código", "Fecha dd/mm/aaaa", "Lugar", "Marca temporal", "Observaciones", "Otros [Firma]", "Otros [Notas]", "Otros [Subrayado]", "Si el tema es docencia, indicar aquí la materia", "Tamaño del documento", "Tema [2]", "Tema: Filosofía [Filosofía]", "Tipo de documento", "Título"]
 
+function numeroAFecha(numeroDeDias, esExcel = false) {
+    var diasDesde1900 = esExcel ? 25567 + 1 : 25567;
+  
+    // 86400 es el número de segundos en un día, luego multiplicamos por 1000 para obtener milisegundos.
+    //return new Date(((numeroDeDias - diasDesde1900) * 86400 * 1000) + ());
+  }
+  
+  
+
 let events = {
     fillResponseFromAllOfDataInText: () => {
         //Remembre after change this
@@ -14,17 +23,31 @@ let events = {
             let content
             let contentOfDivs = ""
             let actualDiv
+            let date
 
             allOfConstants.columns.forEach(col => {
                 actualDiv = null
 
                 if (responseFromAllOfData[0][col]) {
-                    actualDiv = `
-                        <div>
-                            <b>${col}:&nbsp;</b>
-                            <span>${responseFromAllOfData[0][col]}</span>
-                        </div>
-                    `                    
+
+                    if (col !== "Marca temporal") {
+                        actualDiv = `
+                            <div>
+                                <b>${col}:&nbsp;</b>
+                                <span>${responseFromAllOfData[0][col]}</span>
+                            </div>
+                        `
+                    }
+                    else {
+                        date = new Date(((responseFromAllOfData[0][col] - (25567 + 2)) * 86400 * 1000) + (6 * 60 * 60 * 1000))
+                        actualDiv = `
+                            <div>
+                                <b>${col}:&nbsp;</b>
+                                <span>${date.toLocaleString()}</span>
+                            </div>
+                        `
+                    }
+                                        
                 }
 
                 if (actualDiv) {

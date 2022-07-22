@@ -791,6 +791,7 @@ let events = {
         return equalities
     },
     comparisonWithText: (record, equalities, column) => {
+        //console.log(equalities)
         //record[Autor], record[Carpeta], etc.
         //equalities
         let stateOfActualEquality = null
@@ -801,6 +802,7 @@ let events = {
         let actualColumn
         let counterOfJustWords = 0 //Not negatives
         let someWordInTrue = false
+        let comparisonIsImpossible //Word is a connector like: of, the, an, etc
 
         if (column === "All(string)") {
             columnsForSearch = allOfConstants.columns
@@ -818,57 +820,72 @@ let events = {
         equalities.forEach(eq => {
             stateOfActualEquality = false
             firstData = eq.phrase //"titulo"
+            comparisonIsImpossible = false
 
-            if ((!firstData.includes(" ")) && (eq.comparison === "similar")) {
-                counterOfJustWords++
-            }
+            allOfFunctions.returnCorrectData(firstData)
 
-            secondData = null
-            secondDataInArray = null
-            actualColumn = null
-
-            for (let i = 0; (i < columnsForSearch.length) && (!stateOfActualEquality) ; i++) {
-                actualColumn = columnsForSearch[i]
-                if (typeof record[actualColumn] === "string") {
-                    secondData = functions.removeAccents(record[actualColumn]).toLowerCase() // "del libro"
-                    secondDataInArray = secondData.split(" ")
-
-                    for (let j = 0; (j < secondDataInArray.length) && (!stateOfActualEquality) ; j++) {
-                        //secondDataInArray[j]
-                        if (secondDataInArray[j] === firstData) {
-                            stateOfActualEquality = true
-                            someWordInTrue = true
-                        }
-                    }
-
-                    if (secondData.includes(firstData)) {
-                        stateOfActualEquality = true
-                    }
+            for (let i = 0; (i < allOfConstants.omittedWordsInSearch.length) && (!comparisonIsImpossible) ; i++) {
+                if (allOfFunctions.returnCorrectData(allOfConstants.omittedWordsInSearch[i]) === allOfFunctions.returnCorrectData(firstData)) {
+                    comparisonIsImpossible = true
                 }
             }
 
-            if ((eq.comparison === "similar") && (stateOfActualEquality)) {
-                //Alguna columna tendrá que retornar true
-                statesOfEqualities.push(true)
-            }
-            else if ((eq.comparison === "different") && (!stateOfActualEquality)) {
-                //Todas tienen que retornar false
-                statesOfEqualities.push(true)
-            }
-            else {
-                statesOfEqualities.push(false)
+            if (!comparisonIsImpossible) {
+                if ((!firstData.includes(" ")) && (eq.comparison === "similar")) {
+                    counterOfJustWords++
+                }
+    
+                secondData = null
+                secondDataInArray = null
+                actualColumn = null
+    
+                for (let i = 0; (i < columnsForSearch.length) && (!stateOfActualEquality) ; i++) {
+                    actualColumn = columnsForSearch[i]
+                    if (typeof record[actualColumn] === "string") {
+                        secondData = functions.removeAccents(record[actualColumn]).toLowerCase() // "del libro"
+                        secondDataInArray = secondData.split(" ")
+    
+                        for (let j = 0; (j < secondDataInArray.length) && (!stateOfActualEquality) ; j++) {
+                            //secondDataInArray[j]
+                            if (secondDataInArray[j] === firstData) {
+                                stateOfActualEquality = true
+                                someWordInTrue = true
+                            }
+                        }
+    
+                        //Just if firstData is a phrase, like "hello world"
+                        if (secondData.includes(firstData) && firstData.includes(" ")) {
+                            stateOfActualEquality = true
+                        }
+                    }
+                }
+    
+                if ((eq.comparison === "similar") && (stateOfActualEquality)) {
+                    //Alguna columna tendrá que retornar true
+                    statesOfEqualities.push(true)
+                }
+                else if ((eq.comparison === "different") && (!stateOfActualEquality)) {
+                    //Todas tienen que retornar false
+                    statesOfEqualities.push(true)
+                }
+                else {
+                    statesOfEqualities.push(false)
+                }
             }
         })
 
+        // console.log(statesOfEqualities)
+
         if (statesOfEqualities.includes(true) && statesOfEqualities.includes(false)) {
-            console.log(statesOfEqualities)
-            console.log(equalities)
-            console.log(record)
+            // console.log(statesOfEqualities)
+            // console.log(equalities)
+            // console.log(record)
         }
         
         //Verifica este algoritmo despues
         //Te ayudará a detectar errores
-        if (((counterOfJustWords >= 3) && (someWordInTrue)) || (!statesOfEqualities.includes(false))) {
+
+        if (((counterOfJustWords >= 3) && (someWordInTrue)) || ((!statesOfEqualities.includes(false)) && (statesOfEqualities.includes(true)))) {
             return true
         }
         //Caso especial para los que son "different"
@@ -931,7 +948,9 @@ let events = {
                 correctClauses.push(stateOfActualClause)
             }
 
-            if (!correctClauses.includes(false)) {
+            
+
+            if ((!correctClauses.includes(false)) && (correctClauses.includes(true))) {
                 coincidences.push(i)
             }
         }
