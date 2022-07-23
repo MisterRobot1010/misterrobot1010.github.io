@@ -97,4 +97,70 @@ const allOfFunctions = {
 
         return subtopic
     },
+    cointainsJustNumbers: (data) => {
+        let response = null
+        
+        if (!data) {
+            return false
+        }
+
+        for (let i = 0; (i < data.length) && ((response === null) || (response)) ; i++) {
+            switch(data[i]) {
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "0":
+                    response = true
+                    break;
+                default:
+                    response = false
+                    break;
+            }
+        }
+
+        if ((response === null) || (!response)) {
+            return false
+        }
+        else if (response) {
+            return true
+        }
+    },
+    returnArrayOfYears: (initialData) => {
+        let array = []
+        let data
+        if (typeof initialData === "number") {
+            data = initialData.toString()
+        }
+        else if (typeof initialData === "string") {
+            data = initialData
+        }
+
+        if (data) {
+            let actualYear
+
+            for (let i = 0; i < data.length; i++) {
+                if (
+                    ((i + 1) < data.length) &&
+                    ((i + 2) < data.length) &&
+                    ((i + 3) < data.length)
+                ) {
+                    actualYear = data[i] + data[i + 1] + data[i + 2] + data[i + 3]
+
+                    if (allOfFunctions.cointainsJustNumbers(actualYear)) {
+                        if (actualYear.startsWith("18") || actualYear.startsWith("19") || actualYear.startsWith("20")) {
+                            array.push(parseInt(actualYear))
+                        }
+                    }
+                }
+            }
+        }
+
+        return array
+    }
 }

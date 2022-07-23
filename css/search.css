@@ -56,7 +56,10 @@ main {
 .menu .container > * {
     margin: .4rem 0;
 }
-.menu .container input[type="text"] {
+.menu .container > * > input {
+    margin-top: .4rem;
+}
+.menu .container input[type="text"], .menu .container input[type="number"] {
     padding: .7rem;
     border: .1rem solid black;
     border-left: .5rem solid #27ae60;
@@ -65,7 +68,15 @@ main {
     outline: none;
     font-family: 'Nunito', sans-serif;
 }
-.menu .container input[type="text"]::placeholder {
+.menu .container input[type="number"]:disabled {
+    border: .1rem solid gray;
+    border-left: .5rem solid gray;
+}
+.menu .container input[type="number"]:disabled::placeholder {
+    color: transparent;
+}
+
+.menu .container input[type="text"]::placeholder,  .menu .container input[type="number"]::placeholder{
     font-family: 'Nunito', sans-serif;
 }
 .menu .radio-easy-mode input[type="radio"] {
@@ -234,4 +245,37 @@ main {
     border: .1rem solid #27ae60;
     background-color: #27ae60;
     color: white;
+}
+.area-hard-dates {
+}
+.area-hard-dates .area-hard-row:not(:first-child) {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;    
+}
+.area-hard-dates .area-hard-row:first-child * {
+    user-select: none;
+}
+.area-hard-dates .area-hard-row:first-child input[type="checkbox"] {
+    appearance: none;
+}
+.area-hard-dates .area-hard-row:first-child .checkbox-hard-dates-box {
+    border: .1rem solid black;
+    padding: .5rem;
+    border-radius: 1rem;
+    color: white;
+}
+.area-hard-dates .area-hard-row:first-child input[type="checkbox"]:checked ~ .checkbox-hard-dates-box {
+    background-color: #27ae60;
+}
+
+.area-hard-dates .area-hard-row:first-child .checkbox-hard-dates-box {
+    
+}
+/* .area-hard-dates .area-hard-row:first-child input[type="checkbox"] */
+
+.area-hard-dates .area-hard-row .hard-search-date {
+    width: 30%;
 }

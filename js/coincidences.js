@@ -910,7 +910,45 @@ let events = {
             return false
         }
     },
-    comparisonWithDate: () => {},
+    comparisonWithDate: (record, clause) => {
+        //This just work for DATE, not for TEMPORAL MARK
+
+        //First, detect if this is an "Sin fecha" example
+        if ((record["Años"].length === 0) && ((clause.data.initialYear === null) && (clause.data.lastYear ===  null))) {
+            return true
+        }
+
+        //Else, Flow of program is normal
+
+        let isRecordInIntervalOfYears = false
+        let actualYear
+        /*
+            record["Años"] = [1994, 1996]
+
+            clause = {
+                column: "Fecha...",
+                data: {
+                    initialYear: 1900,
+                    lastYear: 2000
+                },
+                dataType: "date"
+            }
+        */
+        
+        
+
+        for (let i = 0; (i < record["Años"].length) && (!isRecordInIntervalOfYears) ; i++) {
+            actualYear = record["Años"][i]
+            //clause.data.initialYear
+            //clause.data.lastYear
+
+            if ((actualYear >= clause.data.initialYear) && (actualYear <= clause.data.lastYear)) {
+                isRecordInIntervalOfYears = true
+            }
+        }
+
+        return isRecordInIntervalOfYears
+    },
     search: (clauses) => {
         /* 
             clauses = [
@@ -942,7 +980,9 @@ let events = {
                     stateOfActualClause = events.comparisonWithText(allOfData[i], events.returnEqualitiesInData(clauses[j].data), clauses[j].column)
                 }
                 else if (clauses[j].dataType === "date") {
-                    alert("Hay fechas involucradas")
+                    console.log("Hay fechas involucradas")
+                    //stateOfActualClause => true
+                    stateOfActualClause = events.comparisonWithDate(allOfData[i], clauses[j])
                 }
 
                 correctClauses.push(stateOfActualClause)
@@ -1170,6 +1210,9 @@ let events = {
                             object["Tema"] = topic
                             object["Subtema"] = subtopic
                             object["Materia"] = subject
+
+                            //Add Años
+                            object["Años"] = allOfFunctions.returnArrayOfYears(object["Fecha dd/mm/aaaa"])
 
                             allOfData.push(object)
                         })

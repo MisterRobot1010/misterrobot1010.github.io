@@ -1,0 +1,14 @@
+.menu .container #easy-search-button {
+    width: 50%;
+}
+.menu .container .div-separator-in-search {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+}
+.menu .container .div-separator-in-search input[type="text"] {
+    flex: 1;
+}
+.menu .container .div-separator-in-search .area-hard-texts .area-hard-row .radio-hard-texts {
+    margin-right: .8rem;
+}

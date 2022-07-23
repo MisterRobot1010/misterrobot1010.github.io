@@ -206,7 +206,13 @@ let events = {
                 dataType: "text || date"
             },
             {
-                ...
+                //This is a special case
+                column: "Fecha dd/mm/aaaa",
+                data: {
+                    initialYear: 1900,
+                    lastYear: 2000
+                },
+                dataType: "date",
             }
         ]
         */  
@@ -345,6 +351,49 @@ let events = {
             }
         })
 
+        //Case: Dates
+        //If both inputnumber are void (just there are two), I won't send
+        let inputNumberInitialYear = document.querySelector(".hard-search-date:nth-of-type(1)")
+        let inputNumberLastYear = document.querySelector(".hard-search-date:nth-of-type(2)")
+        let checkboxDateOfDates = document.querySelector("#checkbox-hard-dates-date")
+        let initialYear
+        let lastYear
+
+        if ((inputNumberInitialYear.value !== "") && (inputNumberLastYear.value !== "")) {
+            initialYear = parseInt(inputNumberInitialYear.value)
+            lastYear = parseInt(inputNumberLastYear.value)
+
+            actualObject = {
+                column: "Fecha dd/mm/aaaa",
+                data: {
+                    initialYear: initialYear,
+                    lastYear: lastYear
+                },
+                dataType: "date",
+                /*
+                {
+                    column: "All(string)" || "Autor" || ...,
+                    data: `hello` || `"hello world"` || `-Hello` || `-"Hello World"`, => true
+                    dataType: "text" || "date"
+                }
+                */
+            }
+
+            array.push(actualObject)
+        }
+        else if (((inputNumberInitialYear.value === "") && (inputNumberLastYear.value === "")) && (checkboxDateOfDates.checked)) {
+            actualObject = {
+                column: "Fecha dd/mm/aaaa",
+                data: {
+                    initialYear: null,
+                    lastYear: null
+                },
+                dataType: "date",
+            }
+
+            array.push(actualObject)
+        }
+
         return array
 
         /*
@@ -378,10 +427,11 @@ let events = {
     },
     showComponentsFromEasySearch: () => {
         let content = `
-            <span>Buscar:</span>
-            <input type="text" name="" class="easy-search-text" placeholder="Ej: Autor, Lugar, Título, etc.">
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Buscar:&nbsp;&nbsp;</span>
+                <input type="text" name="" class="easy-search-text" placeholder="Ej: Autor, Lugar, Título, etc.">
+            </div>
 
-            <br>
             <span>*Si desea buscar por frase exacta escriba entre comillas dobles ("xxx xx xxxx").</span>
             <span>*Si se escriben más de dos palabras sin comillas (""), cada resultado contendrá al menos una.</span>
             <span>*Si desea buscar una frase omitiendo algunas palabras escribimos el signo (-) seguida de la palabra (xxx xx -xxx) o (xxx xx -"xxx xx").</span>
@@ -425,26 +475,31 @@ let events = {
     },
     showComponentsFromHardSearch: () => {
         let content = `
-            <span>Código:</span>
-            <input type="text" name="" id="hard-inputtext-code" class="hard-search-text" placeholder="Ej: D00001">
-            <span>Título:</span>
-            <div class="area-hard-texts area-hard-title">
-                <div class="area-hard-row">
-                    <input type="text" name="" id="hard-inputtext-title" class="hard-search-text" placeholder='Ej: Estética'>
-                    <div class="radio-hard-texts">
-                        <input type="radio" name="rdbtn-hard-title" id="rdbtn-hard-title-exact" value="exact">
-                        <label for="rdbtn-hard-title-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Código:&nbsp;&nbsp;</span>
+                <input type="text" name="" id="hard-inputtext-code" class="hard-search-text" placeholder="Ej: D00001">
+            </div>
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Título:&nbsp;&nbsp;</span>
+                <div class="area-hard-texts area-hard-title">
+                    <div class="area-hard-row">
+                        <input type="text" name="" id="hard-inputtext-title" class="hard-search-text" placeholder='Ej: Estética'>
+                        <div class="radio-hard-texts">
+                            <input type="radio" name="rdbtn-hard-title" id="rdbtn-hard-title-exact" value="exact">
+                            <label for="rdbtn-hard-title-exact"><i class="fa-solid fa-equals"></i></label>
 
-                        <input type="radio" name="rdbtn-hard-title" id="rdbtn-hard-title-not" value="not">
-                        <label for="rdbtn-hard-title-not"><i class="fa-solid fa-not-equal"></i></label>
+                            <input type="radio" name="rdbtn-hard-title" id="rdbtn-hard-title-not" value="not">
+                            <label for="rdbtn-hard-title-not"><i class="fa-solid fa-not-equal"></i></label>
+                        </div>
+                    </div>
+                    <div class="area-hard-row">
+                        <input type="button" class="hard-more-button" value="+" id="hard-more-button-title">
+                    </div>
+                    <div class="area-hard-row">                
                     </div>
                 </div>
-                <div class="area-hard-row">
-                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-title">
-                </div>
-                <div class="area-hard-row">                
-                </div>
             </div>
+
             <span>Autor:</span>
             <div class="area-hard-texts area-hard-author">
                 <div class="area-hard-row">
@@ -572,6 +627,26 @@ let events = {
                 <div class="area-hard-row">                
                 </div>
             </div>
+
+            <span class="separator"></span>
+
+            <span>Fecha:</span>
+            <div class="area-hard-dates area-hard-date">
+                <div class="area-hard-row">
+                    <div class="checkbox-hard-dates">
+                        <input type="checkbox" name="" id="checkbox-hard-dates-date">
+                        <label for="checkbox-hard-dates-date" class="checkbox-hard-dates-box"><i class="fa-solid fa-check"></i></label>
+                        <label for="checkbox-hard-dates-date">&nbsp;Sin fecha</label>
+                    </div>
+                </div>
+                <div class="area-hard-row">
+                    <span>Entre:&nbsp;</span>
+                    <input type="number" name="inputnumber-hard-date" id="hard-inputnumber-year-beginning" class="hard-search-date" placeholder='Ej: 1900'>
+                    <span>&nbsp;y:&nbsp;</span>
+                    <input type="number" name="inputnumber-hard-date" id="hard-inputnumber-year-end" class="hard-search-date" placeholder='Ej: 2000'>
+                </div>
+            </div>
+            
             <input type="button" value="Editar" id="hard-search-edit">
             <input type="button" value="Buscar" id="hard-search-button">
         `
@@ -638,7 +713,18 @@ let events = {
             })
         })
 
-
+        //Just imagine is only one date component
+        document.querySelector("#checkbox-hard-dates-date").addEventListener("click", () => {
+            document.getElementsByName("inputnumber-hard-date").forEach(element => {
+                if (element.disabled) {
+                    element.disabled = false
+                }
+                else {
+                    element.disabled = true
+                }
+                element.value = ""
+            })
+        })
     },
     showComponentsEasyOrHardSearch: () => {
         let selectedSpan = document.querySelector(".area-menu .menu .header .selected")

@@ -25,7 +25,7 @@ let events = {
             let actualDiv
             let date
 
-            allOfConstants.columns.forEach(col => {
+            allOfConstants.columnsForShow.forEach(col => {
                 actualDiv = null
 
                 if (responseFromAllOfData[0][col]) {
@@ -126,6 +126,9 @@ let events = {
                             object["Tema"] = topic
                             object["Subtema"] = subtopic
                             object["Materia"] = subject
+
+                            //Add Años
+                            object["Años"] = allOfFunctions.returnArrayOfYears(object["Fecha dd/mm/aaaa"])
 
                             allOfData.push(object)
                         })
