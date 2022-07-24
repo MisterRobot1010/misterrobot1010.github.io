@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* background: rgb(0 100 0 / 5%) !important;
+    outline: 1px solid green; */
+}
+html {
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
+    font-family: 'Nunito', sans-serif;
+    scroll-behavior: smooth;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */
+}
+.main-container {
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+.easy-search-container {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    min-height: 10vh;
+    border: 0.1rem black solid;
+    overflow: hidden;
+    margin: 2rem;
+}
+.coincidences-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 0.1rem black solid;
+    overflow: hidden;
+    margin: 2rem;
+}
+.coincidences-container .coincidences {
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.coincidences-container .coincidence {
+    overflow: hidden;
+    display: flex;
+    cursor: pointer;
+    margin: 1rem;
+    flex-direction: row;
+    width: 90%;
+    min-height: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: -2px -2px 8px rgb(255 255 255), 
+                -2px -2px 12px rgb(255 255 255 / 50%), 
+                inset 2px 2px 4px rgb(0 0 0 / 10%), 
+                2px 2px 8px rgb(0 0 0 / 80%);
+}
+.coincidences-container .coincidence .photo-container {
+    display: flex;
+    width: 15%;
+    justify-content: center;
+    align-items: center;
+}
+.coincidences-container .coincidence .photo-container .photo {
+    width: 10rem;
+    height: 10rem;
+    margin: .5rem 0;
+    background-color: gray;
+}
+.coincidences-container .coincidence .info-container {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    width: 85%;    
+}
+.coincidences-container .info-container .title {
+    cursor: pointer;
+    display: inline;
+    padding: 1rem;
+}
+.coincidences-container .info-container .title span {
+    background-color: black;
+    color: white;
+    padding: .5rem;
+    transition: .5s;
+    font-weight: bold;
+}
+.coincidences-container .info-container .title span:hover {
+    background-color: white;
+    color: black;
+}
+.coincidences-container .text-column {
+    color: gray;
+}
+.coincidences-container .control-coincidences {
+    width: 100%;
+    margin-top: .5rem;
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 5vh;
+}
+.coincidences-container .control-coincidences > * {
+    margin: 0.5rem;
+}
+.coincidences-container .control-coincidences .numbers-of-pages {
+    width: 10vw;
+    height: 10vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    overflow: scroll;
+    justify-content: center;
+    align-items: center;
+}
+.coincidences-container .control-coincidences .numbers-of-pages * {
+    margin: .5rem;
+}
+.coincidences-container .amount-coincidences{
+    padding: 0rem 2rem;
+}

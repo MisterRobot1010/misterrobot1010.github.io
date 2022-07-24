@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6rem;
+    scroll-behavior: smooth;
+    font-family: 'Nunito', sans-serif;
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 40%, rgba(54,0,25,1) 90%); */   
+}
+.container {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+.container .box {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+.container .box.box1 {
+    background: transparent;
+    /* background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    clip-path: polygon(0 0, 33% 0, 33% 100%, 0% 100%);
+}
+.container .box.box2 {
+    background: transparent;
+    clip-path: polygon(33% 0, 67% 0, 67% 100%, 33% 100%);
+}
+.container .box.box3 {
+    background: transparent;
+    clip-path: polygon(67% 0, 100% 0, 100% 100%, 67% 100%);
+}
+.container .box.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.container .box:hover {
+    z-index: 11;
+}
+.container .box.active .content {
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
+.container .content {
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem 20%;
+    z-index: 10;
+    color: white;
+    opacity: 0;
+    transition: 1s;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(1rem);
+    border-radius: 2rem;
+    padding: 2rem;
+    /* background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(1rem);
+    border-radius: 1rem;
+    box-shadow: 0 .5rem 1rem black; */
+}
+.container .content h2 {
+    font-family: 'Nunito';
+    font-size: 2rem;
+    font-weight: bold;
+}
+.container .content span {
+    font-family: 'Nunito';
+    font-size: 2rem;
+}
+.container .box video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.container .controls {
+    position: relative;
+    align-self: center;
+    width: 100%;
+    height: 10%;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+.container .controls.hide {
+    animation-name: anim-hide;
+    animation-duration: 1s;
+    opacity: 0;
+}
+.container .controls.show {
+    animation-name: anim-show;
+    animation-duration: 1s;
+    opacity: 1;
+}
+@keyframes anim-show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes anim-hide {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.container .prev, .container .next {
+    height: 100%;
+    margin: 3rem;
+    transition: .5s;
+    cursor: pointer;
+}
+.container .prev:hover, .container .next:hover, .container .title:hover {
+    transform: scale(1.1);
+}
+.container .title {
+    transition: .5s;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(1rem);
+    border-radius: 2rem;
+    padding: 2rem;
+}
