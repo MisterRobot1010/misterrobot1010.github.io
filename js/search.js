@@ -500,150 +500,171 @@ let events = {
                 </div>
             </div>
 
-            <span>Autor:</span>
-            <div class="area-hard-texts area-hard-author">
-                <div class="area-hard-row">
-                    <input type="text" name="" id="hard-inputtext-author" class="hard-search-text" placeholder='Ej: Pedro Gómez Danés'>
-                    <div class="radio-hard-texts">
-                        <input type="radio" name="rdbtn-hard-author" id="rdbtn-hard-author-exact" value="exact">
-                        <label for="rdbtn-hard-author-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Autor:&nbsp;&nbsp;</span>
+                <div class="area-hard-texts area-hard-author">
+                    <div class="area-hard-row">
+                        <input type="text" name="" id="hard-inputtext-author" class="hard-search-text" placeholder='Ej: Pedro Gómez Danés'>
+                        <div class="radio-hard-texts">
+                            <input type="radio" name="rdbtn-hard-author" id="rdbtn-hard-author-exact" value="exact">
+                            <label for="rdbtn-hard-author-exact"><i class="fa-solid fa-equals"></i></label>
 
-                        <input type="radio" name="rdbtn-hard-author" id="rdbtn-hard-author-not" value="not">
-                        <label for="rdbtn-hard-author-not"><i class="fa-solid fa-not-equal"></i></label>
+                            <input type="radio" name="rdbtn-hard-author" id="rdbtn-hard-author-not" value="not">
+                            <label for="rdbtn-hard-author-not"><i class="fa-solid fa-not-equal"></i></label>
+                        </div>
                     </div>
-                </div>
-                <div class="area-hard-row">
-                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-author">
-                </div>
-                <div class="area-hard-row">                
-                </div>
-            </div>
-            <span>Lugar:</span>
-            <div class="area-hard-texts area-hard-place">
-                <div class="area-hard-row">
-                    <input type="text" name="" id="hard-inputtext-place" class="hard-search-text" placeholder='Ej: Monterrey, Nuevo León'>
-                    <div class="radio-hard-texts">
-                        <input type="radio" name="rdbtn-hard-place" id="rdbtn-hard-place-exact" value="exact">
-                        <label for="rdbtn-hard-place-exact"><i class="fa-solid fa-equals"></i></label>
-
-                        <input type="radio" name="rdbtn-hard-place" id="rdbtn-hard-place-not" value="not">
-                        <label for="rdbtn-hard-place-not"><i class="fa-solid fa-not-equal"></i></label>
+                    <div class="area-hard-row">
+                        <input type="button" class="hard-more-button" value="+" id="hard-more-button-author">
                     </div>
-                </div>
-                <div class="area-hard-row">
-                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-place">
-                </div>
-                <div class="area-hard-row">                
-                </div>
-            </div>
-            <span>Tema:</span>
-            <div class="area-hard-texts area-hard-topic">
-                <div class="area-hard-row">
-                    <input type="text" name="" id="hard-inputtext-topic" class="hard-search-text" placeholder='Ej: Docencia'>
-                    <div class="radio-hard-texts">
-                        <input type="radio" name="rdbtn-hard-topic" id="rdbtn-hard-topic-exact" value="exact">
-                        <label for="rdbtn-hard-topic-exact"><i class="fa-solid fa-equals"></i></label>
-
-                        <input type="radio" name="rdbtn-hard-topic" id="rdbtn-hard-topic-not" value="not">
-                        <label for="rdbtn-hard-topic-not"><i class="fa-solid fa-not-equal"></i></label>
+                    <div class="area-hard-row">                
                     </div>
-                </div>
-                <div class="area-hard-row">
-                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-topic">
-                </div>
-                <div class="area-hard-row">                
-                </div>
-            </div>
-            <span>Subtema:</span>
-            <div class="area-hard-texts area-hard-subtopic">
-                <div class="area-hard-row">
-                    <input type="text" name="" id="hard-inputtext-subtopic" class="hard-search-text" placeholder='Ej: Trabajo Escolar'>
-                    <div class="radio-hard-texts">
-                        <input type="radio" name="rdbtn-hard-subtopic" id="rdbtn-hard-subtopic-exact" value="exact">
-                        <label for="rdbtn-hard-subtopic-exact"><i class="fa-solid fa-equals"></i></label>
-
-                        <input type="radio" name="rdbtn-hard-subtopic" id="rdbtn-hard-subtopic-not" value="not">
-                        <label for="rdbtn-hard-subtopic-not"><i class="fa-solid fa-not-equal"></i></label>
-                    </div>
-                </div>
-                <div class="area-hard-row">
-                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-subtopic">
-                </div>
-                <div class="area-hard-row">                
-                </div>
-            </div>
-            <span>Materia:</span>
-            <div class="area-hard-texts area-hard-subject">
-                <div class="area-hard-row">
-                    <input type="text" name="" id="hard-inputtext-subject" class="hard-search-text" placeholder='Ej: Estética'>
-                    <div class="radio-hard-texts">
-                        <input type="radio" name="rdbtn-hard-subject" id="rdbtn-hard-subject-exact" value="exact">
-                        <label for="rdbtn-hard-subject-exact"><i class="fa-solid fa-equals"></i></label>
-
-                        <input type="radio" name="rdbtn-hard-subject" id="rdbtn-hard-subject-not" value="not">
-                        <label for="rdbtn-hard-subject-not"><i class="fa-solid fa-not-equal"></i></label>
-                    </div>
-                </div>
-                <div class="area-hard-row">
-                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-subject">
-                </div>
-                <div class="area-hard-row">                
-                </div>
-            </div>
-            <span>Tipo de documento:</span>
-            <div class="area-hard-texts area-hard-typedoc">
-                <div class="area-hard-row">
-                    <input type="text" name="" id="hard-inputtext-typedoc" class="hard-search-text" placeholder='Ej: Mecanoescrito'>
-                    <div class="radio-hard-texts">
-                        <input type="radio" name="rdbtn-hard-typedoc" id="rdbtn-hard-typedoc-exact" value="exact">
-                        <label for="rdbtn-hard-typedoc-exact"><i class="fa-solid fa-equals"></i></label>
-
-                        <input type="radio" name="rdbtn-hard-typedoc" id="rdbtn-hard-typedoc-not" value="not">
-                        <label for="rdbtn-hard-typedoc-not"><i class="fa-solid fa-not-equal"></i></label>
-                    </div>
-                </div>
-                <div class="area-hard-row">
-                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-typedoc">
-                </div>
-                <div class="area-hard-row">                
                 </div>
             </div>
 
-            <span>Tamaño del documento:</span>
-            <div class="area-hard-texts area-hard-sizedoc">
-                <div class="area-hard-row">
-                    <input type="text" name="" id="hard-inputtext-sizedoc" class="hard-search-text" placeholder='Ej: Carta, Oficio, etc.'>
-                    <div class="radio-hard-texts">
-                        <input type="radio" name="rdbtn-hard-sizedoc" id="rdbtn-hard-sizedoc-exact" value="exact">
-                        <label for="rdbtn-hard-sizedoc-exact"><i class="fa-solid fa-equals"></i></label>
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Lugar:&nbsp;&nbsp;</span>
+                <div class="area-hard-texts area-hard-place">
+                    <div class="area-hard-row">
+                        <input type="text" name="" id="hard-inputtext-place" class="hard-search-text" placeholder='Ej: Monterrey, Nuevo León'>
+                        <div class="radio-hard-texts">
+                            <input type="radio" name="rdbtn-hard-place" id="rdbtn-hard-place-exact" value="exact">
+                            <label for="rdbtn-hard-place-exact"><i class="fa-solid fa-equals"></i></label>
 
-                        <input type="radio" name="rdbtn-hard-sizedoc" id="rdbtn-hard-sizedoc-not" value="not">
-                        <label for="rdbtn-hard-sizedoc-not"><i class="fa-solid fa-not-equal"></i></label>
+                            <input type="radio" name="rdbtn-hard-place" id="rdbtn-hard-place-not" value="not">
+                            <label for="rdbtn-hard-place-not"><i class="fa-solid fa-not-equal"></i></label>
+                        </div>
+                    </div>
+                    <div class="area-hard-row">
+                        <input type="button" class="hard-more-button" value="+" id="hard-more-button-place">
+                    </div>
+                    <div class="area-hard-row">                
                     </div>
                 </div>
-                <div class="area-hard-row">
-                    <input type="button" class="hard-more-button" value="+" id="hard-more-button-sizedoc">
+            </div>
+
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Tema:&nbsp;&nbsp;</span>
+                <div class="area-hard-texts area-hard-topic">
+                    <div class="area-hard-row">
+                        <input type="text" name="" id="hard-inputtext-topic" class="hard-search-text" placeholder='Ej: Docencia'>
+                        <div class="radio-hard-texts">
+                            <input type="radio" name="rdbtn-hard-topic" id="rdbtn-hard-topic-exact" value="exact">
+                            <label for="rdbtn-hard-topic-exact"><i class="fa-solid fa-equals"></i></label>
+
+                            <input type="radio" name="rdbtn-hard-topic" id="rdbtn-hard-topic-not" value="not">
+                            <label for="rdbtn-hard-topic-not"><i class="fa-solid fa-not-equal"></i></label>
+                        </div>
+                    </div>
+                    <div class="area-hard-row">
+                        <input type="button" class="hard-more-button" value="+" id="hard-more-button-topic">
+                    </div>
+                    <div class="area-hard-row">                
+                    </div>
                 </div>
-                <div class="area-hard-row">                
+            </div>
+
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Subtema:&nbsp;&nbsp;</span>
+                <div class="area-hard-texts area-hard-subtopic">
+                    <div class="area-hard-row">
+                        <input type="text" name="" id="hard-inputtext-subtopic" class="hard-search-text" placeholder='Ej: Trabajo Escolar'>
+                        <div class="radio-hard-texts">
+                            <input type="radio" name="rdbtn-hard-subtopic" id="rdbtn-hard-subtopic-exact" value="exact">
+                            <label for="rdbtn-hard-subtopic-exact"><i class="fa-solid fa-equals"></i></label>
+
+                            <input type="radio" name="rdbtn-hard-subtopic" id="rdbtn-hard-subtopic-not" value="not">
+                            <label for="rdbtn-hard-subtopic-not"><i class="fa-solid fa-not-equal"></i></label>
+                        </div>
+                    </div>
+                    <div class="area-hard-row">
+                        <input type="button" class="hard-more-button" value="+" id="hard-more-button-subtopic">
+                    </div>
+                    <div class="area-hard-row">                
+                    </div>
+                </div>
+            </div>
+
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Materia:&nbsp;&nbsp;</span>
+                <div class="area-hard-texts area-hard-subject">
+                    <div class="area-hard-row">
+                        <input type="text" name="" id="hard-inputtext-subject" class="hard-search-text" placeholder='Ej: Estética'>
+                        <div class="radio-hard-texts">
+                            <input type="radio" name="rdbtn-hard-subject" id="rdbtn-hard-subject-exact" value="exact">
+                            <label for="rdbtn-hard-subject-exact"><i class="fa-solid fa-equals"></i></label>
+
+                            <input type="radio" name="rdbtn-hard-subject" id="rdbtn-hard-subject-not" value="not">
+                            <label for="rdbtn-hard-subject-not"><i class="fa-solid fa-not-equal"></i></label>
+                        </div>
+                    </div>
+                    <div class="area-hard-row">
+                        <input type="button" class="hard-more-button" value="+" id="hard-more-button-subject">
+                    </div>
+                    <div class="area-hard-row">                
+                    </div>
+                </div>
+            </div>
+
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Tipo de documento:&nbsp;&nbsp;</span>
+                <div class="area-hard-texts area-hard-typedoc">
+                    <div class="area-hard-row">
+                        <input type="text" name="" id="hard-inputtext-typedoc" class="hard-search-text" placeholder='Ej: Mecanoescrito'>
+                        <div class="radio-hard-texts">
+                            <input type="radio" name="rdbtn-hard-typedoc" id="rdbtn-hard-typedoc-exact" value="exact">
+                            <label for="rdbtn-hard-typedoc-exact"><i class="fa-solid fa-equals"></i></label>
+
+                            <input type="radio" name="rdbtn-hard-typedoc" id="rdbtn-hard-typedoc-not" value="not">
+                            <label for="rdbtn-hard-typedoc-not"><i class="fa-solid fa-not-equal"></i></label>
+                        </div>
+                    </div>
+                    <div class="area-hard-row">
+                        <input type="button" class="hard-more-button" value="+" id="hard-more-button-typedoc">
+                    </div>
+                    <div class="area-hard-row">                
+                    </div>
+                </div>
+            </div>
+            
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Tamaño del documento:&nbsp;&nbsp;</span>
+                <div class="area-hard-texts area-hard-sizedoc">
+                    <div class="area-hard-row">
+                        <input type="text" name="" id="hard-inputtext-sizedoc" class="hard-search-text" placeholder='Ej: Carta, Oficio, etc.'>
+                        <div class="radio-hard-texts">
+                            <input type="radio" name="rdbtn-hard-sizedoc" id="rdbtn-hard-sizedoc-exact" value="exact">
+                            <label for="rdbtn-hard-sizedoc-exact"><i class="fa-solid fa-equals"></i></label>
+
+                            <input type="radio" name="rdbtn-hard-sizedoc" id="rdbtn-hard-sizedoc-not" value="not">
+                            <label for="rdbtn-hard-sizedoc-not"><i class="fa-solid fa-not-equal"></i></label>
+                        </div>
+                    </div>
+                    <div class="area-hard-row">
+                        <input type="button" class="hard-more-button" value="+" id="hard-more-button-sizedoc">
+                    </div>
+                    <div class="area-hard-row">                
+                    </div>
                 </div>
             </div>
 
             <span class="separator"></span>
 
-            <span>Fecha:</span>
-            <div class="area-hard-dates area-hard-date">
-                <div class="area-hard-row">
-                    <div class="checkbox-hard-dates">
-                        <input type="checkbox" name="" id="checkbox-hard-dates-date">
-                        <label for="checkbox-hard-dates-date" class="checkbox-hard-dates-box"><i class="fa-solid fa-check"></i></label>
-                        <label for="checkbox-hard-dates-date">&nbsp;Sin fecha</label>
+            <div class="div-separator-in-search" style="display: flex; flex-direction: column;">
+                <span>Fecha:&nbsp;&nbsp;</span>
+                <div class="area-hard-dates area-hard-date">
+                    <div class="area-hard-row">
+                        <div class="checkbox-hard-dates">
+                            <input type="checkbox" name="" id="checkbox-hard-dates-date">
+                            <label for="checkbox-hard-dates-date" class="checkbox-hard-dates-box"><i class="fa-solid fa-check"></i></label>
+                            <label for="checkbox-hard-dates-date">&nbsp;Sin fecha</label>
+                        </div>
                     </div>
-                </div>
-                <div class="area-hard-row">
-                    <span>Entre:&nbsp;</span>
-                    <input type="number" name="inputnumber-hard-date" id="hard-inputnumber-year-beginning" class="hard-search-date" placeholder='Ej: 1900'>
-                    <span>&nbsp;y:&nbsp;</span>
-                    <input type="number" name="inputnumber-hard-date" id="hard-inputnumber-year-end" class="hard-search-date" placeholder='Ej: 2000'>
+                    <div class="area-hard-row">
+                        <span>Entre:&nbsp;</span>
+                        <input type="number" name="inputnumber-hard-date" id="hard-inputnumber-year-beginning" class="hard-search-date" placeholder='Ej: 1900'>
+                        <span>&nbsp;y:&nbsp;</span>
+                        <input type="number" name="inputnumber-hard-date" id="hard-inputnumber-year-end" class="hard-search-date" placeholder='Ej: 2000'>
+                    </div>
                 </div>
             </div>
             

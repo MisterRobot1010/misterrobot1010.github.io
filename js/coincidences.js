@@ -252,12 +252,14 @@ let functions = {
             if (rangeForShowCoincidences.showButtonBackward) {
                 functions.updateBeginAndEndForRangeCoincidencesBackward()
                 events.showResponseFromAllOfDataInText()
+                window.scrollTo(0, document.body.scrollHeight)
             }
         })
         document.querySelector(".control-coincidences .menu-control-coincidences .menu-control-coincidences-item:last-child").addEventListener("click", () => {
             if (rangeForShowCoincidences.showButtonForward) {
                 functions.updateBeginAndEndForRangeCoincidencesForward()
                 events.showResponseFromAllOfDataInText()
+                window.scrollTo(0, document.body.scrollHeight)
             }
         })
         document.querySelectorAll(".control-coincidences .menu-control-coincidences .menu-control-coincidences-item.touchable:not(:first-child):not(:last-child)").forEach(element => {
@@ -300,6 +302,7 @@ let functions = {
                 functions.justUpdateBeginAndEnd()
                 functions.setPaginationOfCoincidences(selectedPage)
                 events.showResponseFromAllOfDataInText()
+                window.scrollTo(0, document.body.scrollHeight)
                 
             })
         })

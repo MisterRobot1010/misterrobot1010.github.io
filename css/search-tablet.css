@@ -6,9 +6,39 @@
     flex-direction: row !important;
     align-items: center;
 }
-.menu .container .div-separator-in-search input[type="text"] {
+.menu .container .div-separator-in-search > input[type="text"] {
+    flex: 1;
+}
+.menu .container .div-separator-in-search .area-hard-texts input[type="text"] {
+    flex: 1;
+}
+.div-separator-in-search .area-hard-texts{
+    flex: 1;
+}
+.div-separator-in-search .area-hard-texts .area-hard-row .radio-hard-texts {
+    flex: 0;
+}
+.menu .container .div-separator-in-search .area-hard-dates {
+    flex: 1;
+}
+.menu .container .div-separator-in-search .area-hard-dates .area-hard-row {
+    justify-content: flex-start;
+}
+.menu .container .div-separator-in-search .area-hard-dates .area-hard-row > *{
+    margin: 0 .5rem 0 0;
+}
+.menu .container .div-separator-in-search .area-hard-dates .area-hard-row input[type="number"] {
     flex: 1;
 }
 .menu .container .div-separator-in-search .area-hard-texts .area-hard-row .radio-hard-texts {
     margin-right: .8rem;
+}
+body .menu .container #hard-search-edit {
+    width: 50%;
+}
+body .menu .container #hard-search-button {
+    width: 50%;
+}
+body .area-hard-dates .area-hard-row:first-child {
+    margin: 0;
 }

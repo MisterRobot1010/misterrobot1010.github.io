@@ -110,6 +110,7 @@ body{
     /* flex-wrap: wrap; */
     justify-content: center;
     align-items: center;
+    user-select: none;
     /* min-height: 5vh; */
 }
 .coincidences-container .control-coincidences .menu-control-coincidences {

@@ -122,14 +122,12 @@ main {
     color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
-    transition: .5s;
+    transition: .25s;
     cursor: pointer;
 }
-/* .menu .container #easy-search-button:hover {
-    background-color: #27ae60;
-    border-color: #27ae60;
-    color: white;
-} */
+.menu .container #easy-search-button:hover {
+    background-color: #24bf64;
+}
 .menu .container #hard-search-button {
     margin: 1rem 0;
     outline: none;
@@ -142,14 +140,12 @@ main {
     color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
-    transition: .5s;
+    transition: .25s;
     cursor: pointer;
 }
-/* .menu .container #hard-search-button:hover {
-    background-color: #27ae60;
-    border-color: #27ae60;
-    color: white;
-} */
+.menu .container #hard-search-button:hover {
+    background-color: #24bf64;
+}
 .menu .container .hard-more-button {
     outline: none;
     width: 20%;
@@ -255,6 +251,9 @@ main {
     justify-content: space-evenly;
     align-items: center;    
 }
+.area-hard-dates .area-hard-row:first-child {
+    margin: 1rem 0;
+}
 .area-hard-dates .area-hard-row:first-child * {
     user-select: none;
 }
@@ -271,8 +270,8 @@ main {
     background-color: #27ae60;
 }
 
-.area-hard-dates .area-hard-row:first-child .checkbox-hard-dates-box {
-    
+.area-hard-dates .area-hard-row:first-child .checkbox-hard-dates > * {
+    cursor: pointer;
 }
 /* .area-hard-dates .area-hard-row:first-child input[type="checkbox"] */
 
