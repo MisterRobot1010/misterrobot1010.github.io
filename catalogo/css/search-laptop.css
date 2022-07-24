@@ -1,0 +1,12 @@
+main .area-menu .menu {
+    align-items: center;
+}
+main .area-menu .menu .container {
+    width: 70rem;
+}
+body .menu .container .hard-more-button {
+    width: 10%;
+}
+body main .menu .container #hard-search-edit, body main .menu .container #hard-search-button, body main .menu .container #easy-search-button {
+    width: 40%;
+}

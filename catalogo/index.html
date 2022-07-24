@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="easy-search-container">
+            <div style="display: inline;">
+                <input type="file" name="input" id="input" accept=".xlsx,.xls">
+                <button  id="button">Leer</button>
+            </div>
+            <span>Búsqueda sencilla</span>
+            <div>
+                <span>Buscar en toda columna (en autor, en carpeta, en lugar, etc.):</span>
+                <input type="text" name="" class="easy-search-text">
+                <input type="button" value="Buscar exactamente" class="exact">
+                <input type="button" value="Buscar sin tanta exactitud" class="no-exact">
+            </div>
+            <a href="">Búsqueda avanzada</a>
+        </div>
+        <div class="coincidences-container">
+            <div class="coincidences" id="all-of-coincidences">
+            </div>
+            <div class="control-coincidences">
+                <input type="button" value="Anterior" class="backward-button">
+                <div class="numbers-of-pages"></div>
+                <input type="button" value="Siguiente" class="forward-button">
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="./index.js"></script>
+</body>
+</html>
